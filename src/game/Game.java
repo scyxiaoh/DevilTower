@@ -2,8 +2,11 @@ package game;
 
 // Start of user code for imports
 import java.util.*;
+
+import org.minueto.window.MinuetoFrame;
 import org.minueto.window.MinuetoWindow;
 
+import interactive.KeyboardHandler;
 import scene.SceneManager;
 
 import org.minueto.MinuetoEventQueue;
@@ -31,7 +34,7 @@ public class Game {
         this.eventQueue = new MinuetoEventQueue();
         this.screenWidth = 672;
         this.screenHeight = 480;
-        this.window = new MinuetoFrame(this.screenWidth, this.screenHeight, false);
+        this.window = new MinuetoFrame(this.screenWidth, this.screenHeight, true);
         this.myAssets = new Assets();
         window.setVisible(true);
         window.setTitle("Devil Tower");
@@ -85,6 +88,6 @@ public class Game {
     }
 
     public void registerHandler() {
-        /* TODO: No message view defined */
+        this.window.registerKeyboardHandler(new KeyboardHandler(), this.eventQueue);
     }
 }
