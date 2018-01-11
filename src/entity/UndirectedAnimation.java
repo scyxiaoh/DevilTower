@@ -1,4 +1,4 @@
-package woven_tilebasedgameengine;
+package entity;
 
 // Start of user code for imports
 import java.util.*;
