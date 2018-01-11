@@ -32,16 +32,16 @@ public class DirectedAnimation extends Animation {
         this.leftFrames = new ArrayList<MinuetoImage>();
         this.rightFrames = new ArrayList<MinuetoImage>();
         for (int i = 0; i < f.length; i++) {
-            if (initialD == North) {
+            if (initialD == Direction.North) {
                 MinuetoImage toBeAdded = f[i];
                 boolean addUpFrames = addUpFrames(toBeAdded);
-            } else if (initialD == South) {
+            } else if (initialD == Direction.South) {
                 MinuetoImage toBeAdded = f[i];
                 boolean addDownFrames = addDownFrames(toBeAdded);
-            } else if (initialD == East) {
+            } else if (initialD == Direction.East) {
                 MinuetoImage toBeAdded = f[i];
                 boolean addRightFrames = addRightFrames(toBeAdded);
-            } else if (initialD == West) {
+            } else if (initialD == Direction.West) {
                 MinuetoImage toBeAdded = f[i];
                 boolean addLeftFrames = addLeftFrames(toBeAdded);
             }
@@ -50,22 +50,22 @@ public class DirectedAnimation extends Animation {
 
     private boolean addFrames(Direction d, MinuetoImage i) {
         boolean added = false;
-        if (d == North) {
+        if (d == Direction.North) {
             if (upFrames.size() == 16) {
                 return false;
             }
             added = upFrames.add(i);
-        } else if (d == South) {
+        } else if (d == Direction.South) {
             if (downFrames.size() == 16) {
                 return false;
             }
             added = downFrames.add(i);
-        } else if (d == West) {
+        } else if (d == Direction.West) {
             if (leftFrames.size() == 16) {
                 return false;
             }
             added = leftFrames.add(i);
-        } else if (d == East) {
+        } else if (d == Direction.East) {
             if (rightFrames.size() == 16) {
                 return false;
             }
@@ -76,13 +76,13 @@ public class DirectedAnimation extends Animation {
 
     private int sizeOfFrames(Direction d) {
         int size = 0;
-        if (d == North) {
+        if (d == Direction.North) {
             size = upFrames.size();
-        } else if (d == South) {
+        } else if (d == Direction.South) {
             size = downFrames.size();
-        } else if (d == East) {
+        } else if (d == Direction.East) {
             size = rightFrames.size();
-        } else if (d == West) {
+        } else if (d == Direction.West) {
             size = leftFrames.size();
         }
         return size;
@@ -102,13 +102,13 @@ public class DirectedAnimation extends Animation {
 
     public MinuetoImage getCurrentFrame() {
         MinuetoImage frameAt = null;
-        if (this.direction == North) {
+        if (this.direction == Direction.North) {
             frameAt = upFrames.get(index);
-        } else if (this.direction == South) {
+        } else if (this.direction == Direction.South) {
             frameAt = downFrames.get(index);
-        } else if (this.direction == West) {
+        } else if (this.direction == Direction.West) {
             frameAt = leftFrames.get(index);
-        } else if (this.direction == East) {
+        } else if (this.direction == Direction.East) {
             frameAt = rightFrames.get(index);
         }
         return frameAt;
@@ -125,7 +125,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeUpFramesAt(int index) {
         int size = upFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = upFrames.remove(index);
@@ -140,7 +140,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeUpFrames(MinuetoImage a) {
         int size = upFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = upFrames.remove(a);
@@ -150,10 +150,6 @@ public class DirectedAnimation extends Animation {
     boolean addUpFrames(MinuetoImage a) {
         boolean added = upFrames.add(a);
         return added;
-    }
-
-    DirectedAnimation() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
     }
 
     boolean containsUpFrames(MinuetoImage a) {
@@ -177,7 +173,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeDownFramesAt(int index) {
         int size = downFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = downFrames.remove(index);
@@ -192,7 +188,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeDownFrames(MinuetoImage a) {
         int size = downFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = downFrames.remove(a);
@@ -202,10 +198,6 @@ public class DirectedAnimation extends Animation {
     boolean addDownFrames(MinuetoImage a) {
         boolean added = downFrames.add(a);
         return added;
-    }
-
-    DirectedAnimation() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
     }
 
     boolean containsDownFrames(MinuetoImage a) {
@@ -229,7 +221,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeLeftFramesAt(int index) {
         int size = leftFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = leftFrames.remove(index);
@@ -244,7 +236,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeLeftFrames(MinuetoImage a) {
         int size = leftFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = leftFrames.remove(a);
@@ -254,10 +246,6 @@ public class DirectedAnimation extends Animation {
     boolean addLeftFrames(MinuetoImage a) {
         boolean added = leftFrames.add(a);
         return added;
-    }
-
-    DirectedAnimation() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
     }
 
     boolean containsLeftFrames(MinuetoImage a) {
@@ -281,7 +269,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeRightFramesAt(int index) {
         int size = rightFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = rightFrames.remove(index);
@@ -296,7 +284,7 @@ public class DirectedAnimation extends Animation {
 
     boolean removeRightFrames(MinuetoImage a) {
         int size = rightFrames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = rightFrames.remove(a);
@@ -306,10 +294,6 @@ public class DirectedAnimation extends Animation {
     boolean addRightFrames(MinuetoImage a) {
         boolean added = rightFrames.add(a);
         return added;
-    }
-
-    DirectedAnimation() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
     }
 
     boolean containsRightFrames(MinuetoImage a) {
