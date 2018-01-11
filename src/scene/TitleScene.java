@@ -69,7 +69,6 @@ public class TitleScene extends Scene {
 		MinuetoFont fontTitle = new MinuetoFont("Arial",60,false, false); 
 		MinuetoText textTitle = new MinuetoText("Devils Tower", fontTitle, MinuetoColor.WHITE,true);
 		this.setLogo(textTitle);
-		System.out.println(¡°inited");
     }
 
     public void draw(MinuetoWindow w) {
