@@ -2,11 +2,14 @@ package scene;
 
 // Start of user code for imports
 import java.util.*;
-import org.minueto.image.MinuetoImage;
+
+import org.minueto.MinuetoColor;
+import org.minueto.image.*;
 import org.minueto.window.MinuetoWindow;
 // End of user code
 
 import interactive.KeyboardHandler;
+import interactive.Keys;
 
 /**
  * TitleScene class definition.
@@ -24,6 +27,7 @@ public class TitleScene extends Scene {
     protected ArrayList<MinuetoImage> options;
     
     public TitleScene() {
+    	this.options = new ArrayList<MinuetoImage>();
         this.introDone = false;
         this.ticks = 0;
     }
@@ -51,7 +55,7 @@ public class TitleScene extends Scene {
             }
             if (ticks > 60 + 60) {
                 this.alpha = (int) (255 * (1.0 * ticks - 60 - 60) / 60);
-                if (apha > 255) {
+                if (alpha > 255) {
                     this.alpha = 255;
                 }
             }
@@ -125,6 +129,7 @@ public class TitleScene extends Scene {
     }
 
     boolean addOptions(MinuetoImage a) {
+    	int maximum = 4;
         int size = options.size();
         if (size == maximum) {
             return false;
@@ -134,6 +139,7 @@ public class TitleScene extends Scene {
     }
 
     boolean addOptionsAt(int index, MinuetoImage a) {
+    	int maximum = 4;
         int size = options.size();
         if (size == maximum) {
             return false;
@@ -143,6 +149,7 @@ public class TitleScene extends Scene {
     }
 
     boolean removeOptionsAt(int index) {
+    	int minimum = 0;
         int size = options.size();
         if (size == minimum) {
             return false;
@@ -158,6 +165,7 @@ public class TitleScene extends Scene {
     }
 
     boolean removeOptions(MinuetoImage a) {
+    	int minimum = 0;
         int size = options.size();
         if (size == minimum) {
             return false;
@@ -176,9 +184,6 @@ public class TitleScene extends Scene {
         return false;
     }
 
-    TitleScene() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
-    }
 
     boolean containsOptions(MinuetoImage a) {
         boolean contains = options.contains(a);

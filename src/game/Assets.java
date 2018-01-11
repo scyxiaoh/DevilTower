@@ -11,9 +11,9 @@ import org.minueto.image.MinuetoImage;
  */
 public class Assets {
     
-    protected ArrayList<MinuetoImage> tileTextures;
-    protected ArrayList<MinuetoImage> entityTextures;
-    protected ArrayList<MinuetoImage> playerTextures;
+    protected static ArrayList<MinuetoImage> tileTextures;
+    protected static ArrayList<MinuetoImage> entityTextures;
+    protected static ArrayList<MinuetoImage> playerTextures;
     
     public Assets() {
         /* TODO: No message view defined */
@@ -53,10 +53,6 @@ public class Assets {
         return removed;
     }
 
-    Assets() {
-        
-    }
-
     static boolean containsTileTextures(MinuetoImage a) {
         boolean contains = tileTextures.contains(a);
         return contains;
@@ -68,7 +64,7 @@ public class Assets {
     }
 
     static ArrayList<MinuetoImage> getTileTextures() {
-        return this.tileTextures;
+        return tileTextures;
     }
 
     static boolean addEntityTexturesAt(int index, MinuetoImage a) {
@@ -105,10 +101,6 @@ public class Assets {
         return removed;
     }
 
-    Assets() {
-        
-    }
-
     static boolean containsEntityTextures(MinuetoImage a) {
         boolean contains = entityTextures.contains(a);
         return contains;
@@ -120,7 +112,7 @@ public class Assets {
     }
 
     static ArrayList<MinuetoImage> getEntityTextures() {
-        return this.entityTextures;
+        return entityTextures;
     }
 
     static boolean addPlayerTexturesAt(int index, MinuetoImage a) {
@@ -157,10 +149,6 @@ public class Assets {
         return removed;
     }
 
-    Assets() {
-        
-    }
-
     static boolean containsPlayerTextures(MinuetoImage a) {
         boolean contains = playerTextures.contains(a);
         return contains;
@@ -172,6 +160,6 @@ public class Assets {
     }
 
     static ArrayList<MinuetoImage> getPlayerTextures() {
-        return this.playerTextures;
+        return playerTextures;
     }
 }

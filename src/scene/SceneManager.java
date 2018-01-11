@@ -17,9 +17,9 @@ public class SceneManager {
     protected Scene previousScene;
     protected static SceneManager instance;
     protected ArrayList<Scene> scenes;
-    protected static SceneManager instance;
     
     private SceneManager() {
+    	scenes = new ArrayList<Scene>();
         TitleScene titleScene = new TitleScene();
         setCurrentScene(titleScene);
         addScenes(titleScene);
@@ -102,9 +102,6 @@ public class SceneManager {
         return removed;
     }
 
-    SceneManager() {
-        ArrayList<Scene> collection = new ArrayList<Scene>();
-    }
 
     boolean containsScenes(Scene a) {
         boolean contains = scenes.contains(a);
