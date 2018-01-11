@@ -29,7 +29,7 @@ public class TitleScene extends Scene {
     public TitleScene() {
     	this.options = new ArrayList<MinuetoImage>();
         this.introDone = false;
-        this.ticks = 0;
+        this.ticks = 0; 
     }
 
     MinuetoImage getLogo() {
@@ -66,7 +66,9 @@ public class TitleScene extends Scene {
     }
 
     public void init() {
-        /* TODO: No message view defined */
+		MinuetoFont fontTitle = new MinuetoFont("Arial",60,false, false); 
+		MinuetoText textTitle = new MinuetoText("Devils Tower", fontTitle, MinuetoColor.WHITE,true);
+		this.setLogo(textTitle);
     }
 
     public void draw(MinuetoWindow w) {

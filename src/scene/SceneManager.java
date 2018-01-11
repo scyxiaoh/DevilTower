@@ -21,6 +21,7 @@ public class SceneManager {
     private SceneManager() {
     	scenes = new ArrayList<Scene>();
         TitleScene titleScene = new TitleScene();
+        titleScene.init();
         setCurrentScene(titleScene);
         addScenes(titleScene);
     }

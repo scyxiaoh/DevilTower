@@ -11,6 +11,7 @@ import scene.SceneManager;
 
 import org.minueto.MinuetoEventQueue;
 // End of user code
+import org.minueto.MinuetoOptions;
 
 /**
  * Game class definition.
@@ -39,6 +40,7 @@ public class Game {
         window.setVisible(true);
         window.setTitle("Devil Tower");
         registerHandler();
+        MinuetoOptions.enableAlpha(true);
         this.inGame = false;
         this.FPS = 0;
         this.nsPerFrame = 1000000000/60;
@@ -48,7 +50,10 @@ public class Game {
     }
 
     public void startRenderLoop() {
-        
+        while(true) {
+        	doDraw();
+        	window.render();
+        }
     }
 
     public void doDraw() {
