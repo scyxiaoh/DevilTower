@@ -8,6 +8,7 @@ import org.minueto.window.MinuetoWindow;
 import entity.Dialogue;
 import entity.Player;
 import interactive.KeyboardHandler;
+import interactive.Keys;
 import map.LevelMap;
 
 /**
@@ -24,7 +25,7 @@ public class GameScene extends Scene {
     protected int currentLevel;
     protected boolean blockInput;
     protected Player player;
-    protected LevelMap currentLevel;
+    protected LevelMap currentLevelMap;
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<LevelMap> levels;
     
