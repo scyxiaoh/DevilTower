@@ -24,7 +24,10 @@ class PauseScene extends Scene {
     protected ArrayList<MinuetoImage> options;
     
     public PauseScene() {
-        /* TODO: No message view defined */
+    	options = new ArrayList<MinuetoImage>();
+    	currentOption = 0;
+    	tick = 0;
+    	this.init();
     }
 
     boolean removeOptions(MinuetoImage a) {
