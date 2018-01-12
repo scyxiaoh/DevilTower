@@ -48,7 +48,6 @@ public class LevelMap {
     public Tile getTile(int x, int y) {
         Tile tile = tiles[x][y];
         return tiles[x][y];
-        return tile;
     }
 
     public void update() {
@@ -73,7 +72,7 @@ public class LevelMap {
         if (camY > camDestY) {
             this.camY = camY - speed;
             if (camY < camDestY) {
-                this.camY = camYDest;
+                this.camY = camDestY;
             }
         }
         fixBounds();
@@ -87,8 +86,8 @@ public class LevelMap {
     public void draw(MinuetoWindow w) {
         int numRowsToDraw = 15;
         int numColsToDraw = 22;
-        int colOffset = Math.floor(camX / 32);
-        int rowOffset = Math.floor(camY/32);
+        int colOffset = (int) Math.floor(camX / 32);
+        int rowOffset = (int) Math.floor(camY/32);
         int camAdjustX = camX - colOffset * 32;
         int camAdjustY = camY - rowOffset * 32;
         for (int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
@@ -116,16 +115,16 @@ public class LevelMap {
     }
 
     public void fixBounds() {
-        if (x < xmin) {
+        if (camX < xmin) {
             this.camX = xmin;
         }
-        if (y < ymin) {
+        if (camY < ymin) {
             this.camY = ymin;
         }
-        if (x > xmax) {
+        if (camX > xmax) {
             this.camX = xmax;
         }
-        if (y > ymax) {
+        if (camY > ymax) {
             this.camY = ymax;
         }
     }
