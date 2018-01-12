@@ -2,10 +2,13 @@ package scene;
 
 // Start of user code for imports
 import java.util.*;
+
+import org.minueto.image.MinuetoImage;
 import org.minueto.window.MinuetoWindow;
 // End of user code
 
 import entity.Dialogue;
+import entity.Direction;
 import entity.Player;
 import interactive.KeyboardHandler;
 import interactive.Keys;
@@ -35,7 +38,7 @@ public class GameScene extends Scene {
 
     public void update() {
         handleInput();
-        currentLevel.update();
+        currentLevelMap.update();
         player.update();
     }
 
@@ -44,7 +47,7 @@ public class GameScene extends Scene {
     }
 
     public void draw(MinuetoWindow w) {
-        currentLevel.draw(w);
+        currentLevelMap.draw(w);
         player.draw(w);
     }
 
@@ -54,16 +57,16 @@ public class GameScene extends Scene {
             sM.setPaused(true);
         }
         if (KeyboardHandler.isDown(Keys.UP)) {
-            player.move();
+            player.move(Direction.North);
         }
         if (KeyboardHandler.isDown(Keys.DOWN)) {
-            player.move();
+            player.move(Direction.South);
         }
         if (KeyboardHandler.isDown(Keys.LEFT)) {
-            player.move();
+            player.move(Direction.West);
         }
         if (KeyboardHandler.isDown(Keys.RIGHT)) {
-            player.move();
+            player.move(Direction.East);
         }
     }
 
@@ -110,10 +113,6 @@ public class GameScene extends Scene {
         return removed;
     }
 
-    GameScene() {
-        ArrayList<Dialogue> collection = new ArrayList<Dialogue>();
-    }
-
     boolean containsDialogueQueue(Dialogue a) {
         boolean contains = dialogueQueue.contains(a);
         return contains;
@@ -124,7 +123,7 @@ public class GameScene extends Scene {
         return size;
     }
 
-    ArrayList<MinuetoImage> getDialogueQueue() {
+    ArrayList<Dialogue> getDialogueQueue() {
         return this.dialogueQueue;
     }
 
@@ -162,9 +161,6 @@ public class GameScene extends Scene {
         return removed;
     }
 
-    GameScene() {
-        ArrayList<LevelMap> collection = new ArrayList<LevelMap>();
-    }
 
     boolean containsLevels(LevelMap a) {
         boolean contains = levels.contains(a);
@@ -176,16 +172,16 @@ public class GameScene extends Scene {
         return size;
     }
 
-    ArrayList<MinuetoImage> getLevels() {
+    ArrayList<LevelMap> getLevels() {
         return this.levels;
     }
 
     LevelMap getCurrentLevel() {
-        return this.currentLevel;
+        return this.currentLevelMap;
     }
 
     boolean setCurrentLevel(LevelMap newObject) {
-        this.currentLevel = newObject;
+        this.currentLevelMap = newObject;
         return true;
     }
 
