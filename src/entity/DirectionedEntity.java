@@ -32,7 +32,7 @@ abstract class DirectionedEntity extends Entity {
     }
 
     public void update() {
-        if (this.animationn != null) {
+        if (this.animation != null) {
             animation.update();
         }
     }

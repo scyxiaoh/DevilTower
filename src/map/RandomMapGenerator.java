@@ -4,7 +4,6 @@ package map;
 import java.util.*;
 // End of user code
 
-import woven_tilebasedgameengine.CollectionOfAssociated;
 
 /**
  * RandomMapGenerator class definition.
@@ -13,7 +12,7 @@ import woven_tilebasedgameengine.CollectionOfAssociated;
 public class RandomMapGenerator {
     
     protected Random random;
-    protected CollectionOfAssociated frontiers;
+    protected ArrayList<Tile> frontiers;
     
     Random getRandom() {
         return this.random;
@@ -58,8 +57,8 @@ public class RandomMapGenerator {
         return removed;
     }
 
-    RandomMapGenerator() {
-        CollectionOfAssociated collection = new CollectionOfAssociated();
+     public RandomMapGenerator() {
+    	ArrayList<Tile> collection = new ArrayList<Tile>();
     }
 
     boolean containsFrontiers(Tile a) {
@@ -72,7 +71,7 @@ public class RandomMapGenerator {
         return size;
     }
 
-    CollectionOfAssociated getFrontiers() {
+    ArrayList<Tile> getFrontiers() {
         return this.frontiers;
     }
 

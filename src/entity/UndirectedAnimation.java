@@ -66,7 +66,7 @@ public class UndirectedAnimation extends Animation {
 
     boolean removeFramesAt(int index) {
         int size = frames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = frames.remove(index);
@@ -81,7 +81,7 @@ public class UndirectedAnimation extends Animation {
 
     boolean removeFrames(MinuetoImage a) {
         int size = frames.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = frames.remove(a);

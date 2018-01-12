@@ -36,9 +36,9 @@ public class Dialogue {
                     toBeAdded = new MinuetoText(thisLine,f,white,true);
                     boolean addContents = addContents(toBeAdded);
                     i = endOfWordNotation+1;
-                } else if (else) {
+                } else {
                     thisLine = c.substring(lastEndOfIndex,i+1);
-                    toBeAdded = new MinuetoTest(thisLine,f,white,true);
+                    toBeAdded = new MinuetoText(thisLine,f,white,true);
                     boolean addContents1 = addContents(toBeAdded);
                 }
                 charIndex = 0;
@@ -46,8 +46,8 @@ public class Dialogue {
                     lastEndOfIndex = i+1;
                 }
             } else if (charIndex == 0 && c.charAt(i)==' ') {
-                lastEndOfIndex = lastEndofIndex + 1;
-            } else if (else) {
+                lastEndOfIndex = lastEndOfIndex + 1;
+            } else {
                 charIndex = charIndex+1;
             }
             if (i>=c.length() -1) {
@@ -84,7 +84,7 @@ public class Dialogue {
         int maximum = 16;
         int size = content.size();
         boolean added = false;
-        if (size == maxmium) {
+        if (size == maximum) {
             return added;
         }
         added = content.add(a);
@@ -104,7 +104,7 @@ public class Dialogue {
 
     boolean removeContentAt(int index) {
         int size = content.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoText removedElement = content.remove(index);
@@ -119,7 +119,7 @@ public class Dialogue {
 
     boolean removeContent(MinuetoText a) {
         int size = content.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = content.remove(a);
@@ -145,7 +145,7 @@ public class Dialogue {
         return size;
     }
 
-    ArrayList<MinuetoImage> getContent() {
+    ArrayList<MinuetoText> getContent() {
         return this.content;
     }
 }

@@ -16,7 +16,7 @@ public abstract class UndirectedEntity extends Entity {
         this.animation = a;
     }
 
-    UndirectedAnimation getAnimation() {
+    public UndirectedAnimation getAnimation() {
         return this.animation;
     }
 

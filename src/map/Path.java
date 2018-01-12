@@ -13,7 +13,7 @@ public class Path {
     protected LinkedList<Tile> myTile;
     
     public Path() {
-        /* TODO: No message view defined */
+    	 LinkedList<Tile> collection = new LinkedList<Tile>();
     }
 
     Tile getFirstMyTile() {
@@ -33,7 +33,7 @@ public class Path {
 
     boolean removeMyTileAt(int index) {
         int size = myTile.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         Tile removedElement = myTile.remove(index);
@@ -48,7 +48,7 @@ public class Path {
 
     boolean removeMyTile(Tile a) {
         int size = myTile.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = myTile.remove(a);
@@ -60,9 +60,6 @@ public class Path {
         return added;
     }
 
-    Path() {
-        LinkedList<Tile> collection = new LinkedList<Tile>();
-    }
 
     boolean containsMyTile(Tile a) {
         boolean contains = myTile.contains(a);
