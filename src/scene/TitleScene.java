@@ -8,6 +8,7 @@ import org.minueto.image.*;
 import org.minueto.window.MinuetoWindow;
 // End of user code
 
+import game.Assets;
 import interactive.KeyboardHandler;
 import interactive.Keys;
 
@@ -66,29 +67,38 @@ public class TitleScene extends Scene {
     }
 
     public void init() {
-		MinuetoFont fontTitle = new MinuetoFont("Arial",60,false, false); 
-		MinuetoText textTitle = new MinuetoText("Devils Tower", fontTitle, MinuetoColor.WHITE,true);
-		this.setLogo(textTitle);
+		MinuetoFont fontTitle = new MinuetoFont("Arial",115,false, false); 
+		this.setLogo(new MinuetoText("Devils Tower", fontTitle, MinuetoColor.WHITE,true));
+		this.setBg(new MinuetoText("Devils Tower", fontTitle, MinuetoColor.WHITE,true));
+		
+		MinuetoFont fontSelection = new MinuetoFont("Arial",30,false, false);
+		MinuetoText selection = new MinuetoText("Start Game", fontSelection, MinuetoColor.WHITE,true);
+		this.addOptions(selection);
+		selection = new MinuetoText("Exit", fontSelection, MinuetoColor.WHITE,true);
+		this.addOptions(selection);
+		
+		this.setPointer(Assets.getEntityTexturesAt(0));
     }
 
     public void draw(MinuetoWindow w) {
         if (!introDone) {
             MinuetoColor white = new MinuetoColor(0, 0, 0);
             w.clear(white);
-            w.draw(this.logo, 0, 0);
+            w.draw(this.logo, 0, 170);
             MinuetoColor transparency = new MinuetoColor(0, 0, 0, this.alpha);
             MinuetoRectangle transparentMask = new MinuetoRectangle(672, 480, transparency, true);
             w.draw(transparentMask, 0, 0);
         } else {
-            w.draw(this.bg, 0, 0);
+        	w.clear(MinuetoColor.BLACK);
+            w.draw(this.bg, 0, 75);
             MinuetoImage toDraw = getOptionsAt(0);
-            w.draw(toDraw, 44, 90);
+            w.draw(toDraw, 250, 260);
             toDraw = getOptionsAt(1);
-            w.draw(toDraw, 48, 100);
+            w.draw(toDraw, 250, 310);
             if (currentOption == 0) {
-                w.draw(this.pointer, 25, 86);
+                w.draw(this.pointer, 230, 270);
             } else if (currentOption == 1) {
-                w.draw(this.pointer, 25, 96);
+                w.draw(this.pointer, 230, 320);
             }
         }
     }
@@ -131,7 +141,7 @@ public class TitleScene extends Scene {
     }
 
     boolean addOptions(MinuetoImage a) {
-    	int maximum = 4;
+    	int maximum = 2;
         int size = options.size();
         if (size == maximum) {
             return false;
@@ -141,7 +151,7 @@ public class TitleScene extends Scene {
     }
 
     boolean addOptionsAt(int index, MinuetoImage a) {
-    	int maximum = 4;
+    	int maximum = 2;
         int size = options.size();
         if (size == maximum) {
             return false;

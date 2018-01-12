@@ -1,9 +1,13 @@
 package game;
 
+import java.net.URL;
 // Start of user code for imports
 import java.util.*;
+
+import org.minueto.MinuetoFileException;
 import org.minueto.image.MinuetoImage;
 // End of user code
+import org.minueto.image.MinuetoImageFile;
 
 /**
  * Assets class definition.
@@ -16,9 +20,27 @@ public class Assets {
     protected static ArrayList<MinuetoImage> playerTextures;
     
     public Assets() {
-        /* TODO: No message view defined */
+    	tileTextures = new ArrayList<MinuetoImage>();
+    	entityTextures = new ArrayList<MinuetoImage>();
+    	playerTextures = new ArrayList<MinuetoImage>();
+    	
+        MinuetoImage tempImg = loadImageAt("diamond.gif");
+        addEntityTextures(tempImg.crop(0, 0, 16, 16));
     }
 
+    public MinuetoImage loadImageAt(String path) {
+    	MinuetoImage toReturn = null;
+		try{
+			URL imageLocation = this.getClass().getClassLoader().getResource("Resources/" + path);
+            toReturn = new MinuetoImageFile(imageLocation);
+		}  catch (MinuetoFileException mfe) {
+			System.err.println("Could not load image file.");
+			System.exit(-1);
+			return null;
+		}
+    	return toReturn;
+    }
+    
     static boolean addTileTexturesAt(int index, MinuetoImage a) {
         boolean contains = tileTextures.contains(a);
         if (contains) {
@@ -34,7 +56,7 @@ public class Assets {
         return result;
     }
 
-    static MinuetoImage getTileTexturesAt(int index) {
+    public static MinuetoImage getTileTexturesAt(int index) {
         MinuetoImage associated = tileTextures.get(index);
         return associated;
     }
@@ -82,7 +104,7 @@ public class Assets {
         return result;
     }
 
-    static MinuetoImage getEntityTexturesAt(int index) {
+    public static MinuetoImage getEntityTexturesAt(int index) {
         MinuetoImage associated = entityTextures.get(index);
         return associated;
     }
@@ -130,7 +152,7 @@ public class Assets {
         return result;
     }
 
-    static MinuetoImage getPlayerTexturesAt(int index) {
+    public static MinuetoImage getPlayerTexturesAt(int index) {
         MinuetoImage associated = playerTextures.get(index);
         return associated;
     }

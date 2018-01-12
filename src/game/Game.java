@@ -68,7 +68,7 @@ public class Game {
                 
             }
         }
-        this.nextFrameTime = (long)((5*nextFrameTime + System.nanoTime())/6 + nsPerFrame);
+        this.nextFrameTime = (long)((9*nextFrameTime + System.nanoTime())/10 + nsPerFrame);
         while (eventQueue.hasNext()) {
             eventQueue.handle();
         }
