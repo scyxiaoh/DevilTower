@@ -13,12 +13,16 @@ abstract class DirectionedEntity extends Entity {
     protected Direction direction;
     protected DirectedAnimation animation;
     
+    public DirectionedEntity() {
+    	
+    }
+    
     public DirectionedEntity(Direction d, DirectedAnimation a) {
         this.animation = a;
         this.direction = d;
     }
 
-    DirectedAnimation getAnimation() {
+    public DirectedAnimation getAnimation() {
         return this.animation;
     }
 
