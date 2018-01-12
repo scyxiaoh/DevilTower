@@ -2,12 +2,16 @@ package scene;
 
 // Start of user code for imports
 import java.util.*;
+
+import org.minueto.MinuetoColor;
+import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoImage;
+import org.minueto.image.MinuetoText;
 import org.minueto.window.MinuetoWindow;
 // End of user code
 
 import interactive.KeyboardHandler;
-import woven_tilebasedgameengine.CollectionOfAssociated;
+import interactive.Keys;
 
 /**
  * PauseScene class definition.
@@ -17,15 +21,18 @@ class PauseScene extends Scene {
     
     protected long tick;
     protected int currentOption;
-    protected CollectionOfAssociated options;
+    protected ArrayList<MinuetoImage> options;
     
     public PauseScene() {
-        /* TODO: No message view defined */
+    	options = new ArrayList<MinuetoImage>();
+    	currentOption = 0;
+    	tick = 0;
+    	this.init();
     }
 
     boolean removeOptions(MinuetoImage a) {
         int size = options.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = options.remove(a);
@@ -39,7 +46,7 @@ class PauseScene extends Scene {
 
     boolean removeOptionsAt(int index) {
         int size = options.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoImage removedElement = options.remove(index);
@@ -57,10 +64,6 @@ class PauseScene extends Scene {
         return added;
     }
 
-    PauseScene() {
-        CollectionOfAssociated collection = new CollectionOfAssociated();
-    }
-
     boolean containsOptions(MinuetoImage a) {
         boolean contains = options.contains(a);
         return contains;
@@ -71,20 +74,23 @@ class PauseScene extends Scene {
         return size;
     }
 
-    CollectionOfAssociated getOptions() {
-        return this.options;
-    }
 
     public void update() {
         handleInput();
     }
 
     public void init() {
-        /* TODO: No message view defined */
+    	MinuetoFont fontPause = new MinuetoFont("Arial",60,false, false); 
+		MinuetoText textPause = new MinuetoText("Pause", fontPause, MinuetoColor.WHITE,true);
+		this.addOptions(textPause);
     }
 
     public void draw(MinuetoWindow w) {
-        /* TODO: No message view defined */
+    	MinuetoColor white = new MinuetoColor(0, 0, 0);
+        w.clear(white);
+        for (int i = 0; i < this.options.size(); i++) {
+            w.draw(this.options.get(i), 0, (i-1)*20);
+        }
     }
 
     public void handleInput() {

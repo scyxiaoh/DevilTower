@@ -4,7 +4,6 @@ package scene;
 import java.util.*;
 import org.minueto.window.MinuetoWindow;
 
-import woven_tilebasedgameengine.CollectionOfAssociated;
 
 import org.minueto.image.MinuetoText;
 // End of user code
@@ -17,11 +16,11 @@ public class ResultScene extends GameScene {
     
     protected long tick;
     protected int rank;
-    protected CollectionOfAssociated resultDisplay;
+    protected ArrayList<MinuetoText> resultDisplay;
     
     boolean removeResultDisplay(MinuetoText a) {
         int size = resultDisplay.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         boolean removed = resultDisplay.remove(a);
@@ -35,7 +34,7 @@ public class ResultScene extends GameScene {
 
     boolean removeResultDisplayAt(int index) {
         int size = resultDisplay.size();
-        if (size == minimum) {
+        if (size == 0) {
             return false;
         }
         MinuetoText removedElement = resultDisplay.remove(index);
@@ -53,9 +52,7 @@ public class ResultScene extends GameScene {
         return added;
     }
 
-    ResultScene() {
-        CollectionOfAssociated collection = new CollectionOfAssociated();
-    }
+
 
     boolean containsResultDisplay(MinuetoText a) {
         boolean contains = resultDisplay.contains(a);
@@ -67,7 +64,7 @@ public class ResultScene extends GameScene {
         return size;
     }
 
-    CollectionOfAssociated getResultDisplay() {
+    ArrayList<MinuetoText> getResultDisplay() {
         return this.resultDisplay;
     }
 
