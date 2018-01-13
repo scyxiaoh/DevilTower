@@ -4,7 +4,10 @@ package scene;
 import java.util.*;
 
 import org.minueto.MinuetoColor;
+import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoImage;
+import org.minueto.image.MinuetoRectangle;
+import org.minueto.image.MinuetoText;
 import org.minueto.window.MinuetoWindow;
 import entity.*;
 import game.Assets;
@@ -30,11 +33,12 @@ public class GameScene extends Scene {
     protected LevelMap currentLevelMap;
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<LevelMap> levels;
+    private MinuetoFont fontUI;
     
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
         levels = new ArrayList<LevelMap>();
-
+        this.fontUI = new MinuetoFont("Arial", 17, false, false);
     }
 
     public void update() {
@@ -230,6 +234,8 @@ public class GameScene extends Scene {
 				}
 
 				levels.get(0).setTile(j, i, tempTile);
+			}
+		}
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
