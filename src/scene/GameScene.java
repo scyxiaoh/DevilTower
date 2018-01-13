@@ -33,7 +33,7 @@ public class GameScene extends Scene {
     protected ArrayList<LevelMap> levels;
     
     public GameScene() {
-        /* TODO: No message view defined */
+        this.init();
     }
 
     public void update() {

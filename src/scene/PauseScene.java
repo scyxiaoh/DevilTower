@@ -10,6 +10,7 @@ import org.minueto.image.MinuetoText;
 import org.minueto.window.MinuetoWindow;
 // End of user code
 
+import game.Assets;
 import interactive.KeyboardHandler;
 import interactive.Keys;
 
@@ -22,10 +23,11 @@ class PauseScene extends Scene {
     protected long tick;
     protected int currentOption;
     protected ArrayList<MinuetoImage> options;
+	private MinuetoImage pointer;
     
     public PauseScene() {
     	options = new ArrayList<MinuetoImage>();
-    	currentOption = 0;
+    	currentOption = 1;
     	tick = 0;
     	this.init();
     }
@@ -80,23 +82,56 @@ class PauseScene extends Scene {
     }
 
     public void init() {
-    	MinuetoFont fontPause = new MinuetoFont("Arial",60,false, false); 
-		MinuetoText textPause = new MinuetoText("Pause", fontPause, MinuetoColor.WHITE,true);
-		this.addOptions(textPause);
+		MinuetoFont fontTitle = new MinuetoFont("Arial",115,false, false); 
+		this.addOptions(new MinuetoText("Pause", fontTitle, MinuetoColor.WHITE,true));
+		
+		MinuetoFont fontSelection = new MinuetoFont("Arial",30,false, false);
+		MinuetoText selection = new MinuetoText("Resume", fontSelection, MinuetoColor.WHITE,true);
+		this.addOptions(selection);
+		selection = new MinuetoText("Exit", fontSelection, MinuetoColor.WHITE,true);
+		this.addOptions(selection);
+		
+		this.setPointer(Assets.getEntityTexturesAt(0));
     }
 
     public void draw(MinuetoWindow w) {
     	MinuetoColor white = new MinuetoColor(0, 0, 0);
-        w.clear(white);
-        for (int i = 0; i < this.options.size(); i++) {
-            w.draw(this.options.get(i), 0, (i-1)*20);
+        w.clear(MinuetoColor.BLACK);
+        w.draw(this.getOptionsAt(0), 0, 75);
+        MinuetoImage toDraw = getOptionsAt(1);
+        w.draw(toDraw, 250, 260);
+        toDraw = getOptionsAt(2);
+        w.draw(toDraw, 250, 310);
+        if (currentOption == 1) {
+            w.draw(this.pointer, 230, 270);
+        } else if (currentOption == 2) {
+            w.draw(this.pointer, 230, 320);
         }
     }
 
     public void handleInput() {
-        SceneManager sM = SceneManager.getInstance();
-        if (KeyboardHandler.isPressed(Keys.E)) {
+        if (KeyboardHandler.isPressed(Keys.DOWN) && currentOption < options.size() - 1) {
+            this.currentOption = currentOption + 1;
+        }
+        if (KeyboardHandler.isPressed(Keys.UP) && currentOption > 1) {
+            this.currentOption = currentOption - 1;
+        }
+        if (KeyboardHandler.isPressed(Keys.ENTER)) {
+            selectOption();
+        }
+    }
+    
+    boolean setPointer(MinuetoImage newObject) {
+        this.pointer = newObject;
+        return true;
+    }
+    
+    public void selectOption() {
+        if (currentOption == 1) {
+            SceneManager sM = SceneManager.getInstance();
             sM.setPaused(false);
+        } else if (currentOption == 2) {
+            System.exit(0);
         }
     }
 }
