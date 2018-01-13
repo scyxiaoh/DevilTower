@@ -22,12 +22,15 @@ public class SceneManager {
     	scenes = new ArrayList<Scene>();
         TitleScene titleScene = new TitleScene();
         titleScene.init();
+        PauseScene pauseScene = new PauseScene();
         setCurrentScene(titleScene);
         addScenes(titleScene);
     }
 
     public void update() {
         if (isPaused()) {
+        	if (pauseScene == null)
+        		pauseScene = new PauseScene();
             pauseScene.update();
         } else if (currentScene != null) {
             currentScene.update();

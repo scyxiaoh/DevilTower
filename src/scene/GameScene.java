@@ -34,6 +34,7 @@ public class GameScene extends Scene {
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
         levels = new ArrayList<LevelMap>();
+
     }
 
     public void update() {
