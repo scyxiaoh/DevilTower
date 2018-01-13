@@ -39,6 +39,8 @@ public class SceneManager {
 
     public void draw(MinuetoWindow w) {
         if (isPaused()) {
+        	if (pauseScene == null)
+        		pauseScene = new PauseScene();
             pauseScene.draw(w);
         } else if (currentScene != null) {
             currentScene.draw(w);

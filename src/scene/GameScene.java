@@ -69,9 +69,8 @@ public class GameScene extends Scene {
 
     public void handleInput() {
         if (KeyboardHandler.isPressed(Keys.E)) {
-        	//TODO
-            //SceneManager sM = SceneManager.getInstance();
-            //sM.setPaused(true);
+        	SceneManager sM = SceneManager.getInstance();
+        	sM.setPaused(true);
         }
         if (KeyboardHandler.isDown(Keys.UP)) {
             player.move(Direction.North);
