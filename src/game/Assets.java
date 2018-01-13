@@ -24,8 +24,15 @@ public class Assets {
     	entityTextures = new ArrayList<MinuetoImage>();
     	playerTextures = new ArrayList<MinuetoImage>();
     	
-        MinuetoImage tempImg = loadImageAt("diamond.gif");
-        addEntityTextures(tempImg.crop(0, 0, 16, 16));
+        MinuetoImage tempImage = loadImageAt("diamond.gif");
+        addEntityTextures(tempImage.crop(0, 0, 16, 16));
+        
+        tempImage = loadImageAt("tileTextures.png");
+		tileTextures.add(tempImage.crop(0, 0, 32, 32)) ;	//ground tile
+		tileTextures.add(tempImage.crop(5*32, 2*32, 32, 32)); //wall left end
+		tileTextures.add(tempImage.crop(6*32, 2*32, 32, 32)); //wall central
+		tileTextures.add(tempImage.crop(7*32, 2*32, 32, 32)); //wall right end
+		tileTextures.add(tempImage.crop(5*32, 32, 32, 32)); //empty tile
     }
 
     public MinuetoImage loadImageAt(String path) {

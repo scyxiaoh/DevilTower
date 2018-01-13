@@ -102,7 +102,8 @@ public class LevelMap {
                 MinuetoImage sprite = tile.getSprite();
                 int drawX = col * 32 - camX - camAdjustX;
                 int drawY = row * 32 - camY - camAdjustY;
-                w.draw(sprite, this.camX, this.camY);
+                w.draw(sprite, drawX, drawY);
+                //System.out.println("drawn: row " + row + " col " + col + " drawX " + drawX + " drawY " + drawY );
                 Entity entity = tile.getMyEntity();
                 if (entity != null) {
                     Animation animation = entity.getAnimation();

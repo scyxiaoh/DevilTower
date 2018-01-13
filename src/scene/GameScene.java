@@ -3,16 +3,15 @@ package scene;
 // Start of user code for imports
 import java.util.*;
 
+import org.minueto.MinuetoColor;
 import org.minueto.image.MinuetoImage;
 import org.minueto.window.MinuetoWindow;
-// End of user code
-
-import entity.Dialogue;
-import entity.Direction;
-import entity.Player;
+import entity.*;
+import game.Assets;
 import interactive.KeyboardHandler;
 import interactive.Keys;
-import map.LevelMap;
+import map.*;
+//End of user code
 
 /**
  * GameScene class definition.
@@ -33,28 +32,35 @@ public class GameScene extends Scene {
     protected ArrayList<LevelMap> levels;
     
     public GameScene() {
-        /* TODO: No message view defined */
+        dialogueQueue = new ArrayList<Dialogue>();
+        levels = new ArrayList<LevelMap>();
     }
 
     public void update() {
         handleInput();
         currentLevelMap.update();
-        player.update();
+        //TODO
+        //player.update();
     }
 
     public void init() {
         constructLevels();
+        this.setCurrentLevel(levels.get(0));
     }
 
     public void draw(MinuetoWindow w) {
-        currentLevelMap.draw(w);
-        player.draw(w);
+    	w.clear(MinuetoColor.BLACK);
+    	
+        currentLevelMap.draw(w);     
+        //TODO
+        //player.draw(w);
     }
 
     public void handleInput() {
         if (KeyboardHandler.isPressed(Keys.E)) {
-            SceneManager sM = SceneManager.getInstance();
-            sM.setPaused(true);
+        	//TODO
+            //SceneManager sM = SceneManager.getInstance();
+            //sM.setPaused(true);
         }
         if (KeyboardHandler.isDown(Keys.UP)) {
             player.move(Direction.North);
@@ -186,6 +192,34 @@ public class GameScene extends Scene {
     }
 
     public void constructLevels() {
-        /* TODO: No message view defined */
+		Tile tempTile;
+		Entity tempEntity;
+		Animation tempAnimation;
+		MinuetoImage[] tempImageArray;
+		
+		//levelZero
+		levels.add(new LevelMap(21,0));
+		for (int i = 0; i < 21; i++){
+			for (int j = 0; j < 21; j++){
+				if (i == 10){
+					tempTile = new Tile(TileType.Ground);
+				}
+				else if (i == 1 && j <= 8){
+					tempTile = new Tile(TileType.WallLeftEnd);
+				}
+				else if (i == 19 && j <= 8){
+					tempTile = new Tile(TileType.WallRightEnd);
+				}
+				else{
+					tempTile = new Tile(TileType.Empty);
+				}
+				
+				if ((j == 0||j == 8) && !(i == 1 || i == 19 || i == 0 || i == 20 || i == 10)){
+					tempTile = new Tile(TileType.Wall);
+				}
+
+				levels.get(0).setTile(j, i, tempTile);
+			}
+		}
     }
 }
