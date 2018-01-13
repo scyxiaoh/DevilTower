@@ -28,11 +28,18 @@ public class Assets {
         addEntityTextures(tempImage.crop(0, 0, 16, 16));
         
         tempImage = loadImageAt("tileTextures.png");
-		tileTextures.add(tempImage.crop(0, 0, 32, 32)) ;	//ground tile
-		tileTextures.add(tempImage.crop(5*32, 2*32, 32, 32)); //wall left end
-		tileTextures.add(tempImage.crop(6*32, 2*32, 32, 32)); //wall central
-		tileTextures.add(tempImage.crop(7*32, 2*32, 32, 32)); //wall right end
-		tileTextures.add(tempImage.crop(5*32, 32, 32, 32)); //empty tile
+        addTileTextures(tempImage.crop(0, 0, 32, 32)) ;	//ground tile
+        addTileTextures(tempImage.crop(5*32, 2*32, 32, 32)); //wall left end
+        addTileTextures(tempImage.crop(6*32, 2*32, 32, 32)); //wall central
+        addTileTextures(tempImage.crop(7*32, 2*32, 32, 32)); //wall right end
+        addTileTextures(tempImage.crop(5*32, 32, 32, 32)); //empty tile
+		
+		tempImage = loadImageAt("Actor06-Braver02.png");
+		for (int i = 0; i < 4 ;i++){
+			for (int j = 0; j < 4; j++){
+				addPlayerTextures(tempImage.crop(j*32, i*32, 32, 32));//player textures
+			}
+		}	// [0-3]- font; [4-7]- left; [8-11]- right; [12-15]- back
     }
 
     public MinuetoImage loadImageAt(String path) {

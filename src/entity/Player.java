@@ -21,12 +21,13 @@ public class Player extends DirectionedEntity {
     protected Weapon myWeapon;
     protected Armor myArmor;
     
-    public Player(String n) {
+    public Player(Direction d, DirectedAnimation a, String n) {
+    	super(d,a);
         this.name = n;
-        this.level = 0;
+        this.level = 1;
         this.experience = 0;
-        this.attackDamage = 1;
-        this.defence = 1;
+        this.attackDamage = 10;
+        this.defence = 10;
         this.health = 100;
         this.score = 0;
     }
@@ -110,14 +111,6 @@ public class Player extends DirectionedEntity {
 
     public int getDamage() {
         return this.attackDamage;
-    }
-
-    public void update() {
-        /* TODO: No message view defined */
-    }
-
-    public void draw(MinuetoWindow w) {
-        
     }
 
     public void move(Direction d) {

@@ -23,7 +23,7 @@ public class DirectedAnimation extends Animation {
     protected ArrayList<MinuetoImage> leftFrames;
     protected ArrayList<MinuetoImage> rightFrames;
     
-    public DirectedAnimation(Direction initialD, MinuetoImage[] f) {
+    public DirectedAnimation(Direction initialD, MinuetoImage[] u, MinuetoImage[] d, MinuetoImage[] l, MinuetoImage[] r) {
         this.speed = 100;
         this.index = 0;
         this.lastTime = System.currentTimeMillis();
@@ -31,20 +31,21 @@ public class DirectedAnimation extends Animation {
         this.downFrames = new ArrayList<MinuetoImage>();
         this.leftFrames = new ArrayList<MinuetoImage>();
         this.rightFrames = new ArrayList<MinuetoImage>();
-        for (int i = 0; i < f.length; i++) {
-            if (initialD == Direction.North) {
-                MinuetoImage toBeAdded = f[i];
-                boolean addUpFrames = addUpFrames(toBeAdded);
-            } else if (initialD == Direction.South) {
-                MinuetoImage toBeAdded = f[i];
-                boolean addDownFrames = addDownFrames(toBeAdded);
-            } else if (initialD == Direction.East) {
-                MinuetoImage toBeAdded = f[i];
-                boolean addRightFrames = addRightFrames(toBeAdded);
-            } else if (initialD == Direction.West) {
-                MinuetoImage toBeAdded = f[i];
-                boolean addLeftFrames = addLeftFrames(toBeAdded);
-            }
+        this.direction = initialD;
+        for (int i = 0; i < u.length; i++) {
+        	addFrames(Direction.North, u[i]);
+        }
+        
+        for (int i = 0; i < d.length; i++) {
+        	addFrames(Direction.South, d[i]);
+        }
+        
+        for (int i = 0; i < l.length; i++) {
+        	addFrames(Direction.West, l[i]);
+        }
+        
+        for (int i = 0; i < r.length; i++) {
+        	addFrames(Direction.East, r[i]);
         }
     }
 

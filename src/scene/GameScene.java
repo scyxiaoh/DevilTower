@@ -47,6 +47,16 @@ public class GameScene extends Scene {
     public void init() {
         constructLevels();
         this.setCurrentLevel(levels.get(0));
+        
+        MinuetoImage[][] playerSprites = new MinuetoImage[4][4];
+        for (int i = 0; i < 4; i++) {
+        	for (int j = 0; j < 4; j++) {
+        		playerSprites[i][j] = Assets.getPlayerTexturesAt(i*4 + j);
+        	}
+        }
+        DirectedAnimation playerAnimation = new DirectedAnimation(Direction.North, playerSprites[3], playerSprites[0], playerSprites[1], playerSprites[2]);
+        this.player = new Player(Direction.North, playerAnimation, "Warrior");
+        levels.get(0).getTile(13, 10).setMyEntity(this.player);
     }
 
     public void draw(MinuetoWindow w) {

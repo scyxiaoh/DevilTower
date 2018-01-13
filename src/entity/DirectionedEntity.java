@@ -11,11 +11,8 @@ import java.util.*;
 abstract class DirectionedEntity extends Entity {
     
     protected Direction direction;
-    protected DirectedAnimation animation;
-    
-    public DirectionedEntity() {
-    	
-    }
+
+	protected DirectedAnimation animation;
     
     public DirectionedEntity(Direction d, DirectedAnimation a) {
         this.animation = a;
@@ -30,10 +27,44 @@ abstract class DirectionedEntity extends Entity {
         this.animation = newObject;
         return true;
     }
+    
+    public Direction getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+		//TODO
+		//check moving and validate next position
+		//set animation direction and reset frames
+	}
 
     public void update() {
+		// get next position
+    	if (moving) getNextPosition();
+    	
+    	// check stop moving
+    	if (this.positionX == this.destX && this.positionY == this.destY) moving = false;
+    	
+    	// update animation
         if (this.animation != null) {
             animation.update();
         }
     }
+    
+	public void getNextPosition() {
+		
+		if(direction == Direction.West && this.positionX > this.destX) this.positionX -= moveSpeed;
+		if(direction == Direction.West && this.positionX < this.destX) this.positionX = this.destX;
+		
+		if(direction == Direction.East && this.positionX < this.destX) this.positionX += moveSpeed;
+		if(direction == Direction.East && this.positionX > this.destX) this.positionX = this.destX;
+		
+		if(direction == Direction.North && this.positionY > this.destY) this.positionY -= moveSpeed;
+		if(direction == Direction.North && this.positionY < this.destY) this.positionY = this.destY;
+		
+		if(direction == Direction.South && this.positionY < this.destY) this.positionY += moveSpeed;
+		if(direction == Direction.South && this.positionY > this.destY) this.positionY = this.destY;
+		
+	}
 }

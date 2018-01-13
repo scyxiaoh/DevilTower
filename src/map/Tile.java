@@ -33,11 +33,11 @@ public class Tile {
         return true;
     }
 
-    Entity getMyEntity() {
+    public Entity getMyEntity() {
         return this.myEntity;
     }
 
-    boolean setMyEntity(Entity newObject) {
+    public boolean setMyEntity(Entity newObject) {
         this.myEntity = newObject;
         return true;
     }
