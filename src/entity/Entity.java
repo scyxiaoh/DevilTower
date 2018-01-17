@@ -2,7 +2,8 @@ package entity;
 
 // Start of user code for imports
 import java.util.*;
-// End of user code
+import org.minueto.window.MinuetoWindow;
+//End of user code
 
 /**
  * Entity class definition.
@@ -20,6 +21,10 @@ public abstract class Entity {
     protected double moveSpeed;
     
     public abstract void update();
+    
+	public void draw(MinuetoWindow w, int x, int y) {
+		w.draw(this.getAnimation().getCurrentFrame(), x, y);
+	}
 
     public abstract Animation getAnimation();
     

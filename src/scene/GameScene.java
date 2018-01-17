@@ -40,8 +40,7 @@ public class GameScene extends Scene {
     public void update() {
         handleInput();
         currentLevelMap.update();
-        //TODO
-        //player.update();
+        player.update();
     }
 
     public void init() {
@@ -56,15 +55,13 @@ public class GameScene extends Scene {
         }
         DirectedAnimation playerAnimation = new DirectedAnimation(Direction.North, playerSprites[3], playerSprites[0], playerSprites[1], playerSprites[2]);
         this.player = new Player(Direction.North, playerAnimation, "Warrior");
-        levels.get(0).getTile(13, 10).setMyEntity(this.player);
+        this.player.setPosition(10*32, 13*32);
+        levels.get(0).setCam((10-10)*32, (13-7)*32);
     }
 
     public void draw(MinuetoWindow w) {
     	w.clear(MinuetoColor.BLACK);
-    	
-        currentLevelMap.draw(w);     
-        //TODO
-        //player.draw(w);
+        currentLevelMap.draw(w, this.getPlayer());     
     }
 
     public void handleInput() {

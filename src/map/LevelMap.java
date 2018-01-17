@@ -4,10 +4,10 @@ package map;
 import java.util.*;
 import org.minueto.image.MinuetoImage;
 import org.minueto.window.MinuetoWindow;
-// End of user code
-
 import entity.Animation;
 import entity.Entity;
+import entity.Player;
+// End of user code
 
 /**
  * LevelMap class definition.
@@ -17,7 +17,7 @@ public class LevelMap {
     
     protected int size;
     protected int level;
-    protected int camX;
+	protected int camX;
     protected int camY;
     protected int camDestX;
     protected int camDestY;
@@ -75,7 +75,7 @@ public class LevelMap {
                 this.camY = camDestY;
             }
         }
-        fixBounds();
+        
         if (camX != camDestX ||camY != camDestY) {
             this.moving = true;
         } else {
@@ -83,7 +83,7 @@ public class LevelMap {
         }
     }
 
-    public void draw(MinuetoWindow w) {
+    public void draw(MinuetoWindow w, Player p) {
         int numRowsToDraw = 15;
         int numColsToDraw = 22;
         int colOffset = (int) Math.floor(camX / 32);
@@ -110,23 +110,29 @@ public class LevelMap {
                     MinuetoImage currentFrame = animation.getCurrentFrame();
                     w.draw(currentFrame, drawX, drawY);
                     entity.update();
+                    drawX = entity.getPositionX() - camX - camAdjustX;
+                    drawY = entity.getPositionY() - camY - camAdjustY;
+                    entity.draw(w, drawX, drawY);
                 }
             }
         }
+        int drawX = p.getPositionX() - camX - camAdjustX;
+        int drawY = p.getPositionY() - camY - camAdjustY;
+        p.draw(w, drawX, drawY);
     }
 
     public void fixBounds() {
-        if (camX < xmin) {
-            this.camX = xmin;
+        if (camDestX < xmin) {
+            this.camDestX = xmin;
         }
-        if (camY < ymin) {
-            this.camY = ymin;
+        if (camDestY < ymin) {
+            this.camDestY = ymin;
         }
-        if (camX > xmax) {
-            this.camX = xmax;
+        if (camDestX > xmax) {
+            this.camDestX = xmax;
         }
-        if (camY > ymax) {
-            this.camY = ymax;
+        if (camDestY > ymax) {
+            this.camDestY = ymax;
         }
     }
 
@@ -147,4 +153,31 @@ public class LevelMap {
         this.pathfinding = newObject;
         return true;
     }
+    
+    public void setCam(int x, int y) {
+    	this.camX = x;
+    	this.camY = y;
+    }
+    
+    public void setCamDest(int x, int y) {
+    	this.camDestX = x;
+    	this.camDestY = y;
+    	fixBounds();
+    }
+    
+    public int getCamX() {
+		return camX;
+	}
+
+	public int getCamY() {
+		return camY;
+	}
+
+	public int getCamDestX() {
+		return camDestX;
+	}
+
+	public int getCamDestY() {
+		return camDestY;
+	}
 }
