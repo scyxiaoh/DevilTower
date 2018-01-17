@@ -48,9 +48,11 @@ public class GameScene extends Scene {
     }
 
     public void init() {
+        //initiate levels
         constructLevels();
         this.setCurrentLevel(levels.get(0));
-        
+      
+        //initiate the player object and the camera
         MinuetoImage[][] playerSprites = new MinuetoImage[4][4];
         for (int i = 0; i < 4; i++) {
         	for (int j = 0; j < 4; j++) {

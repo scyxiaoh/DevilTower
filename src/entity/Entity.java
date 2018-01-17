@@ -71,4 +71,12 @@ public abstract class Entity {
 	public void setMoveSpeed(double moveSpeed) {
 		this.moveSpeed = moveSpeed;
 	}
+	
+	public void playAnimation() {
+		this.getAnimation().play();
+	}
+	
+	public void stopAnimation() {
+		this.getAnimation().stop();
+	}
 }

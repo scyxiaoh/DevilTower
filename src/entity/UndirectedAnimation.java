@@ -24,6 +24,7 @@ public class UndirectedAnimation extends Animation {
         this.index = 0;
         this.lastTime = System.currentTimeMillis();
         this.frames = new ArrayList<MinuetoImage>();
+        this.playing = false;
         for (int i = 0; i < f.length;  i ++) {
             MinuetoImage toBeAdded = f[i];
             boolean addFrame = addFrame(toBeAdded);
@@ -39,15 +40,17 @@ public class UndirectedAnimation extends Animation {
     }
 
     public void update() {
-        this.timer = timer+System.currentTimeMillis()-lastTime;
-        this.lastTime = System.currentTimeMillis();
-        if (timer > speed) {
-            this.index = index + 1;
-            this.timer = 0;
-            if (index >= sizeOfFrames()) {
-                this.index = 0;
+    	if (playing) {
+            this.timer = timer+System.currentTimeMillis()-lastTime;
+            this.lastTime = System.currentTimeMillis();
+            if (timer > speed) {
+                this.index = index + 1;
+                this.timer = 0;
+                if (index >= sizeOfFrames()) {
+                    this.index = 0;
+                }
             }
-        }
+    	}
     }
 
     public MinuetoImage getCurrentFrame() {

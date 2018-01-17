@@ -17,8 +17,22 @@ public abstract class Animation {
     protected long timer;
     protected int speed;
     protected long lastTime;
-    
-    public abstract void update();
+    protected boolean playing;
+
+	public abstract void update();
 
     public abstract MinuetoImage getCurrentFrame();
+    
+    public boolean isPlaying() {
+		return playing;
+	}
+
+	public void play() {
+		this.playing = true;
+	}
+	
+	public void stop() {
+		this.playing = false;
+		this.index = 0;
+	}
 }
