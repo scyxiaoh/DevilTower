@@ -4,7 +4,10 @@ package scene;
 import java.util.*;
 
 import org.minueto.MinuetoColor;
+import org.minueto.image.MinuetoFont;
 import org.minueto.image.MinuetoImage;
+import org.minueto.image.MinuetoRectangle;
+import org.minueto.image.MinuetoText;
 import org.minueto.window.MinuetoWindow;
 import entity.*;
 import game.Assets;
@@ -30,11 +33,12 @@ public class GameScene extends Scene {
     protected LevelMap currentLevelMap;
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<LevelMap> levels;
+    private MinuetoFont fontUI;
     
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
         levels = new ArrayList<LevelMap>();
-
+        this.fontUI = new MinuetoFont("Arial", 17, false, false);
     }
 
     public void update() {
@@ -62,6 +66,7 @@ public class GameScene extends Scene {
     public void draw(MinuetoWindow w) {
     	w.clear(MinuetoColor.BLACK);
         currentLevelMap.draw(w, this.getPlayer());     
+        drawUI(w);
     }
 
     public void handleInput() {
@@ -228,5 +233,96 @@ public class GameScene extends Scene {
 				levels.get(0).setTile(j, i, tempTile);
 			}
 		}
+
+		//levelOne
+		levels.add(new LevelMap(21,1));
+        for (int i = 0; i < 21; i++) {
+            for (int j = 0; j < 21; j++) {
+                if (i==0) {
+                    tempTile = new Tile(TileType.WallLeftEnd);
+                } else if (i == 20) {
+                    tempTile = new Tile(TileType.WallRightEnd);
+                } else if ((j==0 || j==1)&& i!=0 && i!= 20) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (j==19 && i!=0 && i!=20 && i!=10) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (j==20 && i!=0 && i!=20) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (i == 2 && j!=4 && j!=16 && j!=18 && j>1 && j<19) {
+                    tempTile = new Tile(TileType.WallRightEnd);
+                } else if (i==4 && j!=2 && j!=18 && j>1 && j<19) {
+                    tempTile = new Tile(TileType.WallLeftEnd);
+                } else if (i==16 && j!=2 && j!=6 && j!=18 && j>1 && j<19) {
+                    tempTile = new Tile(TileType.WallLeftEnd);
+                } else if (i==17 && j!=2 && j!=6 && j!=18 && j>1 && j<19) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (i==18 && (j==4||j==5||j==7)) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (i==1 && (j==13 || j==14 || j==15 || j==17)) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (j==17 && i!=0 && i!=3 && i!=4 && i!=2 && i<14) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if (j==3 && i>3 && i!=9 && i!=11 && i!=12 && i!=14 && i!=15 && i<18) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if ((j==4 || j==5) && ((i>3 && i!=14 && i!=15 && i<18) || (i==19))) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if ((j == 7) && ((i>3 && i!=10 && i!=14 && i!=15 && i<18) || (i==19))) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if ((j==8) && (i>3 && i!=10 && i!=11 && i!=14 && i!=15 && i<18)) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if ((j==9) && (i>3 && i!=14 && i!=15 && i<18)) {
+                    tempTile = new Tile(TileType.Wall);
+                } else if ((i==14) && (j<19 && j>2 && j!=6)) {
+                    tempTile = new Tile(TileType.WallRightEnd);
+                } else if ((i==18) && (j<18 && j>7)) {
+                    tempTile = new Tile(TileType.WallRightEnd);
+                } else if (i == 17 && j == 3){
+                	tempTile = new Tile(TileType.WallRightEnd);
+                } else {
+                    tempTile = new Tile(TileType.Ground);
+                }
+                levels.get(1).setTile(i, j, tempTile);
+            }
+        }
+    }
+    
+    void drawUI(MinuetoWindow w){
+        MinuetoRectangle newRec = new MinuetoRectangle(672, 32, MinuetoColor.BLACK, true);
+        w.draw(newRec, 0, 448);
+        String tempString = "HP: ";
+        MinuetoText toWrite = new MinuetoText(tempString, this.fontUI, MinuetoColor.WHITE, true);
+        w.draw(toWrite, 16, 454);
+        tempString = "Attack: ";
+        toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
+        w.draw(toWrite, 112, 454);
+        tempString = "Armor: " ;
+        toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
+        w.draw(toWrite, 208, 454);
+        tempString = "Exp: " ;
+        toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
+        w.draw(toWrite, 304, 454);
+        /** TODO
+        toDraw = assets.getEntityTexturesAt(EntityType.YellowKey.ordinal());
+        w.draw(toDraw, 400, 448);
+        tempString = " : " + countKeysYellow;
+        MinuetoColor yellow = MinuetoColor.YELLOW;
+        toWrite = new MinuetoText(tempString, this.fontUI, yellow, true);
+        w.draw(toWrite, 432, 454);
+        toDraw = assets.getEntityTexturesAt(EntityType.BlueKey.ordinal());
+        w.draw(toDraw, 464, 448);
+        tempString = " : " + countKeysBlue;
+        MinuetoColor blue = new MinuetoColor(140, 142, 252);
+        toWrite = new MinuetoText(tempString, this.fontUI, blue, true);
+        w.draw(toWrite, 496, 454);
+        toDraw = assets.getEntityTexturesAt(EntityType.RedKey.ordinal());
+        w.draw(toDraw, 528, 448);
+        tempString = " : " + countKeysRed;
+        MinuetoColor red = MinuetoColor.RED;
+        toWrite = new MinuetoText(tempString, this.fontUI, red, true);
+        w.draw(toWrite, 560, 454);*/
+        tempString = "Level: " + currentLevel;
+        toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
+        w.draw(toWrite, 592, 454);
+        
     }
 }
