@@ -16,6 +16,8 @@ public class UndirectedEntity extends Entity {
     
     public UndirectedEntity(UndirectedAnimation a) {
         this.animation = a;
+        this.moving = false;
+        this.moveSpeed = 4;
     }
 
     public UndirectedAnimation getAnimation() {
