@@ -40,6 +40,34 @@ public class Assets {
 				addPlayerTextures(tempImage.crop(j*32, i*32, 32, 32));//player textures
 			}
 		}	// [0-3]- font; [4-7]- left; [8-11]- right; [12-15]- back
+		
+		tempImage = loadImageAt("Item01-01.png");
+        addEntityTextures(tempImage.crop(0, 0, 32, 32)); // [1] yellow key
+        addEntityTextures(tempImage.crop(32, 0, 32, 32)); // [2] blue key
+        addEntityTextures(tempImage.crop(64, 0, 32, 32)); // [3] red key
+        
+        tempImage = loadImageAt("Event01-Door01.png"); //[4-7] yellow door [8-11] blue door [12-15] red door
+        addEntityTextures(tempImage.crop(0, 0, 32, 32));
+        addEntityTextures(tempImage.crop(0, 32, 32, 32));
+        addEntityTextures(tempImage.crop(0, 64, 32, 32));
+        addEntityTextures(tempImage.crop(0, 96, 32, 32));
+        addEntityTextures(tempImage.crop(32, 0, 32, 32));
+        addEntityTextures(tempImage.crop(32, 32, 32, 32));
+        addEntityTextures(tempImage.crop(32, 64, 32, 32));
+        addEntityTextures(tempImage.crop(32, 96, 32, 32));
+        addEntityTextures(tempImage.crop(64, 0, 32, 32));
+        addEntityTextures(tempImage.crop(64, 32, 32, 32));
+        addEntityTextures(tempImage.crop(64, 64, 32, 32));
+        addEntityTextures(tempImage.crop(64, 96, 32, 32));
+        
+        tempImage = loadImageAt("stairs.png"); // [16] down stair [17] up stair
+        addEntityTextures(tempImage.crop(0, 0, 32, 32));
+        addEntityTextures(tempImage.crop(32, 0, 32, 32));
+        
+        tempImage = loadImageAt("Actor01-Braver17.png"); // [18] elf
+        addEntityTextures(tempImage.crop(0, 0, 32, 32));
+        
+        
     }
 
     public MinuetoImage loadImageAt(String path) {

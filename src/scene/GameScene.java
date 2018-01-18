@@ -33,6 +33,9 @@ public class GameScene extends Scene {
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<LevelMap> levels;
     private MinuetoFont fontUI;
+    private int countKeysYellow;
+    private int countKeysBlue;
+    private int countKeysRed;
     
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
@@ -284,37 +287,36 @@ public class GameScene extends Scene {
     void drawUI(MinuetoWindow w){
         MinuetoRectangle newRec = new MinuetoRectangle(672, 32, MinuetoColor.BLACK, true);
         w.draw(newRec, 0, 448);
-        String tempString = "HP: ";
+        String tempString = "HP: " + player.getHealth();
         MinuetoText toWrite = new MinuetoText(tempString, this.fontUI, MinuetoColor.WHITE, true);
         w.draw(toWrite, 16, 454);
-        tempString = "Attack: ";
+        tempString = "Attack: " + player.getDamage();
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 112, 454);
-        tempString = "Armor: " ;
+        tempString = "Armor: " + player.getDefence();
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 208, 454);
-        tempString = "Exp: " ;
+        tempString = "Exp: " + player.getExp();
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 304, 454);
-        /** TODO
-        toDraw = assets.getEntityTexturesAt(EntityType.YellowKey.ordinal());
-        w.draw(toDraw, 400, 448);
+        MinuetoImage toDraw = Assets.getEntityTexturesAt(1);
+        w.draw(toDraw, 380, 448);
         tempString = " : " + countKeysYellow;
         MinuetoColor yellow = MinuetoColor.YELLOW;
         toWrite = new MinuetoText(tempString, this.fontUI, yellow, true);
-        w.draw(toWrite, 432, 454);
-        toDraw = assets.getEntityTexturesAt(EntityType.BlueKey.ordinal());
-        w.draw(toDraw, 464, 448);
+        w.draw(toWrite, 412, 454);
+        toDraw = Assets.getEntityTexturesAt(2);
+        w.draw(toDraw, 444, 448);
         tempString = " : " + countKeysBlue;
         MinuetoColor blue = new MinuetoColor(140, 142, 252);
         toWrite = new MinuetoText(tempString, this.fontUI, blue, true);
-        w.draw(toWrite, 496, 454);
-        toDraw = assets.getEntityTexturesAt(EntityType.RedKey.ordinal());
-        w.draw(toDraw, 528, 448);
+        w.draw(toWrite, 476, 454);
+        toDraw = Assets.getEntityTexturesAt(3);
+        w.draw(toDraw, 508, 448);
         tempString = " : " + countKeysRed;
         MinuetoColor red = MinuetoColor.RED;
         toWrite = new MinuetoText(tempString, this.fontUI, red, true);
-        w.draw(toWrite, 560, 454);*/
+        w.draw(toWrite, 540, 454);
         tempString = "Level: " + currentLevel;
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 592, 454);
