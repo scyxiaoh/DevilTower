@@ -74,6 +74,7 @@ public class DirectionedEntity extends Entity {
     public void move(Direction d) {
     	if (!moving) {
     		this.direction = d;
+    		this.animation.setDirection(d);
     		if (nextPositionAvailable()) {
     			moving = true;
     	        if(d == Direction.North) {

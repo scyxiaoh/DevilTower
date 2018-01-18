@@ -119,29 +119,56 @@ public class Player extends DirectionedEntity {
     
     @Override
     public void move(Direction d) {
-    	System.out.println(moving);
     	if (!moving) {
     		this.direction = d;
+    		this.animation.setDirection(d);
     		if (nextPositionAvailable()) {
     			moving = true;
+    			this.playAnimation();
+    			boolean cameraMove = (this.positionX - this.levelMap.getCamX()) == 10 * 32 && (this.positionY - this.levelMap.getCamY()) == 7 * 32;
     	        if(d == Direction.North) {
     	        	this.setDest(this.getDestX(), this.getDestY()-32);
-    	        	this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()-32);
+        			if (cameraMove) {
+        				this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()-32);
+        			}
     	        }
     	        else if (d == Direction.South) {
     	        	this.setDest(this.getDestX(), this.getDestY()+32);
-    	        	this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()+32);
+    	        	if (cameraMove) {
+    	        		this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()+32);
+    	        	}
     	        }
     	        else if (d == Direction.East) {
     	        	this.setDest(this.getDestX()+32, this.getDestY());
-    	        	this.levelMap.setCamDest(this.levelMap.getCamX()+32, this.levelMap.getCamY());
+    	        	if (cameraMove) {
+    	        		this.levelMap.setCamDest(this.levelMap.getCamX()+32, this.levelMap.getCamY());
+    	        	}
     	        }
     	        else if (d == Direction.West) {
     	        	this.setDest(this.getDestX()-32, this.getDestY());
-    	        	this.levelMap.setCamDest(this.levelMap.getCamX()-32, this.levelMap.getCamY());
-    	        }
+    	        	if (cameraMove) {
+        	        	this.levelMap.setCamDest(this.levelMap.getCamX()-32, this.levelMap.getCamY());
+    	        	}
+    	        }	
     		}
     	}
+    }
+    
+    @Override
+    public void update() {
+		// get next position
+    	if (moving) getNextPosition();
+    	
+    	// check stop moving
+    	if (this.positionX == this.destX && this.positionY == this.destY) {
+    		moving = false;
+    		this.stopAnimation();
+    	}
+    	
+    	// update animation
+        if (this.animation != null) {
+            animation.update();
+        }
     }
     
     public int getHealth(){

@@ -11,18 +11,11 @@ import org.minueto.image.MinuetoImage;
  */
 public class UndirectedAnimation extends Animation {
     
-    protected int index;
-    protected int delay;
-    protected int timesPlayed;
-    protected long timer;
-    protected int speed;
-    protected long lastTime;
     protected ArrayList<MinuetoImage> frames;
     
     public UndirectedAnimation(MinuetoImage[] f) {
-        this.speed = 100;
+        this.speed = 4;
         this.index = 0;
-        this.lastTime = System.currentTimeMillis();
         this.frames = new ArrayList<MinuetoImage>();
         this.playing = false;
         for (int i = 0; i < f.length;  i ++) {
@@ -41,9 +34,8 @@ public class UndirectedAnimation extends Animation {
 
     public void update() {
     	if (playing) {
-            this.timer = timer+System.currentTimeMillis()-lastTime;
-            this.lastTime = System.currentTimeMillis();
-            if (timer > speed) {
+            this.timer = this.timer + 1;
+            if (timer >= speed) {
                 this.index = index + 1;
                 this.timer = 0;
                 if (index >= sizeOfFrames()) {

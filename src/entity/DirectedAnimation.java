@@ -11,22 +11,15 @@ import org.minueto.image.MinuetoImage;
  */
 public class DirectedAnimation extends Animation {
     
-    protected int index;
-    protected int delay;
-    protected int timesPlayed;
-    protected long timer;
     protected Direction direction;
-    protected long lastTime;
-    protected int speed;
     protected ArrayList<MinuetoImage> upFrames;
     protected ArrayList<MinuetoImage> downFrames;
     protected ArrayList<MinuetoImage> leftFrames;
     protected ArrayList<MinuetoImage> rightFrames;
     
     public DirectedAnimation(Direction initialD, MinuetoImage[] u, MinuetoImage[] d, MinuetoImage[] l, MinuetoImage[] r) {
-        this.speed = 100;
+        this.speed = 4;
         this.index = 0;
-        this.lastTime = System.currentTimeMillis();
         this.upFrames = new ArrayList<MinuetoImage>();
         this.downFrames = new ArrayList<MinuetoImage>();
         this.leftFrames = new ArrayList<MinuetoImage>();
@@ -92,9 +85,8 @@ public class DirectedAnimation extends Animation {
 
     public void update() {
     	if (playing) {
-            this.timer = timer+System.currentTimeMillis()-lastTime;
-            this.lastTime = System.currentTimeMillis();
-            if (timer>speed) {
+            this.timer = this.timer + 1;
+            if (timer >= speed) {
                 this.index = index+1;
                 this.timer = 0;
                 if (index >= sizeOfFrames(this.direction)) {
@@ -313,4 +305,9 @@ public class DirectedAnimation extends Animation {
     ArrayList<MinuetoImage> getRightFrames() {
         return this.rightFrames;
     }
+    
+    public void setDirection(Direction direction) {
+		this.direction = direction;
+		this.index = 0;
+	}
 }

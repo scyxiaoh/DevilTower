@@ -16,7 +16,6 @@ public abstract class Animation {
     protected int timesPlayed;
     protected long timer;
     protected int speed;
-    protected long lastTime;
     protected boolean playing;
 
 	public abstract void update();
@@ -33,6 +32,5 @@ public abstract class Animation {
 	
 	public void stop() {
 		this.playing = false;
-		this.index = 0;
 	}
 }
