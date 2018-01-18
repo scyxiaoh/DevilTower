@@ -85,7 +85,7 @@ public class DirectedAnimation extends Animation {
 
     public void update() {
     	if (playing) {
-            this.timer = this.timer + 1;
+    		this.timer = this.timer + 1;
             if (timer >= speed) {
                 this.index = index+1;
                 this.timer = 0;

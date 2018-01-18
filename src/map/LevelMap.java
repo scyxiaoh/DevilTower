@@ -180,7 +180,6 @@ public class LevelMap {
     public void setCamDest(int x, int y) {
     	this.camDestX = x;
     	this.camDestY = y;
-    	System.out.println(x + " " + y);
     	fixBounds();
     }
     

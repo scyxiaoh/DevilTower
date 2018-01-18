@@ -37,22 +37,21 @@ public class DirectionedEntity extends Entity {
 
 	public void setDirection(Direction direction) {
 		this.direction = direction;
-		//TODO
-		//check moving and validate next position
-		//set animation direction and reset frames
+		this.animation.setDirection(direction);
 	}
 
     public void update() {
-		// get next position
-    	if (moving) getNextPosition();
-    	
-    	// check stop moving
-    	if (this.positionX == this.destX && this.positionY == this.destY) moving = false;
-    	
     	// update animation
         if (this.animation != null) {
             animation.update();
         }
+        
+		// get next position
+    	if (moving) getNextPosition();
+    	
+    	// check stop moving
+    	if ((this.positionX == this.destX && this.positionY == this.destY) && moving) moving = false;
+    	
     }
     
 	public void getNextPosition() {
@@ -73,8 +72,7 @@ public class DirectionedEntity extends Entity {
 	
     public void move(Direction d) {
     	if (!moving) {
-    		this.direction = d;
-    		this.animation.setDirection(d);
+    		if (d != direction) this.setDirection(d);
     		if (nextPositionAvailable()) {
     			moving = true;
     	        if(d == Direction.North) {

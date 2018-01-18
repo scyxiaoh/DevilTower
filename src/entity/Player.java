@@ -120,8 +120,7 @@ public class Player extends DirectionedEntity {
     @Override
     public void move(Direction d) {
     	if (!moving) {
-    		this.direction = d;
-    		this.animation.setDirection(d);
+    		if (d != direction) this.setDirection(d);
     		if (nextPositionAvailable()) {
     			moving = true;
     			this.playAnimation();
@@ -156,19 +155,19 @@ public class Player extends DirectionedEntity {
     
     @Override
     public void update() {
-		// get next position
-    	if (moving) getNextPosition();
-    	
-    	// check stop moving
-    	if (this.positionX == this.destX && this.positionY == this.destY) {
-    		moving = false;
-    		this.stopAnimation();
-    	}
-    	
     	// update animation
         if (this.animation != null) {
             animation.update();
         }
+        
+		// get next position
+    	if (moving) getNextPosition();
+    	
+    	// check stop moving
+    	if ((this.positionX == this.destX && this.positionY == this.destY) && moving) {
+    		moving = false;
+    		this.stopAnimation();
+    	}
     }
     
     public int getHealth(){

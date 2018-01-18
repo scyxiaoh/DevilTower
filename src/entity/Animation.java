@@ -32,5 +32,6 @@ public abstract class Animation {
 	
 	public void stop() {
 		this.playing = false;
+		this.timer = 0;
 	}
 }
