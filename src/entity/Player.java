@@ -143,4 +143,21 @@ public class Player extends DirectionedEntity {
     		}
     	}
     }
+    
+    public int getHealth(){
+    	return this.health;
+    }
+    
+    public int getDefence(){
+    	return this.defence;
+    }
+    
+    public int getExp(){
+    	return this.experience;
+    }
+    
+    public int getLvl(){
+    	return this.level;
+    }
+    
 }
