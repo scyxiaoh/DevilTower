@@ -228,7 +228,7 @@ public class GameScene extends Scene {
 					tempTile = new Tile(TileType.Wall);
 				}
 
-				levels.get(0).setTile(j, i, tempTile);
+				levels.get(0).setTile(i, j, tempTile);
 			}
 		}
 

@@ -3,7 +3,9 @@ package entity;
 // Start of user code for imports
 import java.util.*;
 import org.minueto.window.MinuetoWindow;
-// End of user code
+import map.Tile;
+import map.TileType;
+//End of user code
 
 /**
  * DirectionedEntity class definition.
@@ -73,7 +75,7 @@ public class DirectionedEntity extends Entity {
     public void move(Direction d) {
     	if (!moving) {
     		if (d != direction) this.setDirection(d);
-    		if (nextPositionAvailable()) {
+    		if (nextPositionAvailable(d)) {
     			moving = true;
     	        if(d == Direction.North) {
     	        	this.setDest(this.getDestX(), this.getDestY()-32);
@@ -91,8 +93,25 @@ public class DirectionedEntity extends Entity {
     	}
     }
     
-    public boolean nextPositionAvailable() {
-    	//TODO
-    	return true;
+    public boolean nextPositionAvailable(Direction d) {
+    	int col = this.positionX / 32;
+    	int rol = this.positionY / 32;
+    	System.out.println(col + " "+ rol);
+    	Tile nextTile = null;
+        if(d == Direction.North && rol > this.levelMap.getYmin() / 32) {
+        	nextTile = this.levelMap.getTile(col, rol-1);
+        }
+        else if (d == Direction.South && rol < this.levelMap.getYmax() / 32) {
+        	nextTile = this.levelMap.getTile(col, rol+1);
+        }
+        else if (d == Direction.East  && col < this.levelMap.getXmax() / 32) {
+        	nextTile = this.levelMap.getTile(col+1, rol);
+        }
+        else if (d == Direction.West && col > this.levelMap.getXmin() / 32) {
+        	nextTile = this.levelMap.getTile(col-1, rol);
+        	
+        }
+        if (nextTile != null && nextTile.getType() == TileType.Ground) return true;
+        else return false;
     }
 }

@@ -121,7 +121,7 @@ public class Player extends DirectionedEntity {
     public void move(Direction d) {
     	if (!moving) {
     		if (d != direction) this.setDirection(d);
-    		if (nextPositionAvailable()) {
+    		if (nextPositionAvailable(d)) {
     			moving = true;
     			this.playAnimation();
     			boolean cameraMove = (this.positionX - this.levelMap.getCamX()) == 10 * 32 && (this.positionY - this.levelMap.getCamY()) == 7 * 32;

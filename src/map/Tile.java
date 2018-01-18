@@ -56,4 +56,9 @@ public class Tile {
     private boolean checkOnEntity(Entity e) {
         return false;
     }
+
+	public TileType getType() {
+		return type;
+	}
+    
 }

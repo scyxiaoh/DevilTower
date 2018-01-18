@@ -38,8 +38,8 @@ public class LevelMap {
         this.speed = 4;
         this.xmin = 0;
         this.ymin = 0;
-        this.xmax = size * 32;
-        this.ymax = size * 32;
+        this.xmax = (size-1) * 32;
+        this.ymax = (size-1) * 32;
     }
 
     public void setTile(int x, int y, Tile t) {
@@ -115,7 +115,7 @@ public class LevelMap {
                 if (col >= size) {
                     break;
                 }
-                Tile tile = getTile(row, col);
+                Tile tile = getTile(col, row);
                 MinuetoImage sprite = tile.getSprite();
                 int drawX = col * 32 - camX;
                 int drawY = row * 32 - camY;
@@ -145,11 +145,11 @@ public class LevelMap {
         if (camDestY < ymin) {
             this.camDestY = ymin;
         }
-        if (camDestX > (xmax - 21 * 32)) {
-            this.camDestX = xmax - 21 * 32;
+        if (camDestX > (xmax - 20 * 32)) {
+            this.camDestX = xmax - 20 * 32;
         }
-        if (camDestY > (ymax - 14 * 32)) {
-            this.camDestY = ymax - 14 * 32;
+        if (camDestY > (ymax - 13 * 32)) {
+            this.camDestY = ymax - 13 * 32;
         }
     }
 
