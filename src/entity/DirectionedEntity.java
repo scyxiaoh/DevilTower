@@ -18,6 +18,7 @@ public class DirectionedEntity extends Entity {
     public DirectionedEntity(Direction d, DirectedAnimation a) {
         this.animation = a;
         this.direction = d;
+        this.moveSpeed = 4;
     }
 
     public DirectedAnimation getAnimation() {
@@ -68,4 +69,19 @@ public class DirectionedEntity extends Entity {
 		if(direction == Direction.South && this.positionY > this.destY) this.positionY = this.destY;
 		
 	}
+	
+    public void move(Direction d) {
+        if(d == Direction.North) {
+        	this.setDest(this.getDestX(), this.getDestY()-32);
+        }
+        else if (d == Direction.South) {
+        	this.setDest(this.getDestX(), this.getDestY()+32);
+        }
+        else if (d == Direction.East) {
+        	this.setDest(this.getDestX()+32, this.getDestY());
+        }
+        else if (d == Direction.West) {
+        	this.setDest(this.getDestX()-32, this.getDestY());
+        }
+    }
 }

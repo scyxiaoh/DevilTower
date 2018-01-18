@@ -23,7 +23,7 @@ public class LevelMap {
     protected int camDestY;
     protected int speed;
     protected Tile[][] tiles;
-    protected int xmin;
+	protected int xmin;
     protected int ymin;
     protected int xmax;
     protected int ymax;
@@ -35,10 +35,11 @@ public class LevelMap {
         this.size = s;
         this.level = l;
         this.tiles = new Tile[size][size];
+        this.speed = 4;
         this.xmin = 0;
         this.ymin = 0;
-        this.xmax = (size - 21) * 32;
-        this.ymax = (size - 14) * 32;
+        this.xmax = size * 32;
+        this.ymax = size * 32;
     }
 
     public void setTile(int x, int y, Tile t) {
@@ -49,7 +50,23 @@ public class LevelMap {
         Tile tile = tiles[x][y];
         return tiles[x][y];
     }
+    
+    public int getXmin() {
+		return xmin;
+	}
 
+	public int getYmin() {
+		return ymin;
+	}
+
+	public int getXmax() {
+		return xmax;
+	}
+
+	public int getYmax() {
+		return ymax;
+	}
+	
     public void update() {
         if (camX < camDestX) {
             this.camX = camX + speed;
@@ -87,7 +104,7 @@ public class LevelMap {
         int numRowsToDraw = 15;
         int numColsToDraw = 22;
         int colOffset = (int) Math.floor(camX / 32);
-        int rowOffset = (int) Math.floor(camY/32);
+        int rowOffset = (int) Math.floor(camY / 32);
         int camAdjustX = camX - colOffset * 32;
         int camAdjustY = camY - rowOffset * 32;
         for (int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
@@ -100,8 +117,8 @@ public class LevelMap {
                 }
                 Tile tile = getTile(row, col);
                 MinuetoImage sprite = tile.getSprite();
-                int drawX = col * 32 - camX - camAdjustX;
-                int drawY = row * 32 - camY - camAdjustY;
+                int drawX = col * 32 - camX;
+                int drawY = row * 32 - camY;
                 w.draw(sprite, drawX, drawY);
                 //System.out.println("drawn: row " + row + " col " + col + " drawX " + drawX + " drawY " + drawY );
                 Entity entity = tile.getMyEntity();
@@ -110,14 +127,14 @@ public class LevelMap {
                     MinuetoImage currentFrame = animation.getCurrentFrame();
                     w.draw(currentFrame, drawX, drawY);
                     entity.update();
-                    drawX = entity.getPositionX() - camX - camAdjustX;
-                    drawY = entity.getPositionY() - camY - camAdjustY;
+                    drawX = entity.getPositionX() - camX;
+                    drawY = entity.getPositionY() - camY;
                     entity.draw(w, drawX, drawY);
                 }
             }
         }
-        int drawX = p.getPositionX() - camX - camAdjustX;
-        int drawY = p.getPositionY() - camY - camAdjustY;
+        int drawX = p.getPositionX() - camX;
+        int drawY = p.getPositionY() - camY;
         p.draw(w, drawX, drawY);
     }
 
@@ -128,11 +145,11 @@ public class LevelMap {
         if (camDestY < ymin) {
             this.camDestY = ymin;
         }
-        if (camDestX > xmax) {
-            this.camDestX = xmax;
+        if (camDestX > (xmax - 21 * 32)) {
+            this.camDestX = xmax - 21 * 32;
         }
-        if (camDestY > ymax) {
-            this.camDestY = ymax;
+        if (camDestY > (ymax - 14 * 32)) {
+            this.camDestY = ymax - 14 * 32;
         }
     }
 
@@ -157,11 +174,13 @@ public class LevelMap {
     public void setCam(int x, int y) {
     	this.camX = x;
     	this.camY = y;
+    	setCamDest(this.camX, this.camY);
     }
     
     public void setCamDest(int x, int y) {
     	this.camDestX = x;
     	this.camDestY = y;
+    	System.out.println(x + " " + y);
     	fixBounds();
     }
     

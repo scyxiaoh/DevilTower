@@ -30,7 +30,6 @@ public class GameScene extends Scene {
     protected int currentLevel;
     protected boolean blockInput;
     protected Player player;
-    protected LevelMap currentLevelMap;
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<LevelMap> levels;
     private MinuetoFont fontUI;
@@ -43,16 +42,16 @@ public class GameScene extends Scene {
 
     public void update() {
         handleInput();
-        currentLevelMap.update();
+        levels.get(currentLevel).update();
         player.update();
     }
 
     public void init() {
         //initiate levels
         constructLevels();
-        this.setCurrentLevel(levels.get(0));
+        this.currentLevel = 0;
       
-        //initiate the player object and the camera
+        //initiate the player object
         MinuetoImage[][] playerSprites = new MinuetoImage[4][4];
         for (int i = 0; i < 4; i++) {
         	for (int j = 0; j < 4; j++) {
@@ -62,12 +61,15 @@ public class GameScene extends Scene {
         DirectedAnimation playerAnimation = new DirectedAnimation(Direction.North, playerSprites[3], playerSprites[0], playerSprites[1], playerSprites[2]);
         this.player = new Player(Direction.North, playerAnimation, "Warrior");
         this.player.setPosition(10*32, 13*32);
+        this.player.setLevelMap(levels.get(currentLevel));
+        
+        //initiate the camera
         levels.get(0).setCam((10-10)*32, (13-7)*32);
     }
 
     public void draw(MinuetoWindow w) {
     	w.clear(MinuetoColor.BLACK);
-        currentLevelMap.draw(w, this.getPlayer());     
+        levels.get(currentLevel).draw(w, this.getPlayer());     
         drawUI(w);
     }
 
@@ -83,10 +85,10 @@ public class GameScene extends Scene {
             player.move(Direction.South);
         }
         if (KeyboardHandler.isDown(Keys.LEFT)) {
-            player.move(Direction.West);
+        	player.move(Direction.West);
         }
         if (KeyboardHandler.isDown(Keys.RIGHT)) {
-            player.move(Direction.East);
+        	player.move(Direction.East);
         }
     }
 
@@ -194,15 +196,6 @@ public class GameScene extends Scene {
 
     ArrayList<LevelMap> getLevels() {
         return this.levels;
-    }
-
-    LevelMap getCurrentLevel() {
-        return this.currentLevelMap;
-    }
-
-    boolean setCurrentLevel(LevelMap newObject) {
-        this.currentLevelMap = newObject;
-        return true;
     }
 
     public void constructLevels() {

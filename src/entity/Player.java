@@ -113,11 +113,27 @@ public class Player extends DirectionedEntity {
         return this.attackDamage;
     }
 
-    public void move(Direction d) {
-        /* TODO: No message view defined */
-    }
-
     public void encounter(Entity e) {
         /* TODO: No message view defined */
+    }
+    
+    @Override
+    public void move(Direction d) {
+        if(d == Direction.North) {
+        	this.setDest(this.getDestX(), this.getDestY()-32);
+        	this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()-32);
+        }
+        else if (d == Direction.South) {
+        	this.setDest(this.getDestX(), this.getDestY()+32);
+        	this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()+32);
+        }
+        else if (d == Direction.East) {
+        	this.setDest(this.getDestX()+32, this.getDestY());
+        	this.levelMap.setCamDest(this.levelMap.getCamX()+32, this.levelMap.getCamY());
+        }
+        else if (d == Direction.West) {
+        	this.setDest(this.getDestX()-32, this.getDestY());
+        	this.levelMap.setCamDest(this.levelMap.getCamX()-32, this.levelMap.getCamY());
+        }
     }
 }

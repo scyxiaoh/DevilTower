@@ -3,6 +3,8 @@ package entity;
 // Start of user code for imports
 import java.util.*;
 import org.minueto.window.MinuetoWindow;
+
+import map.LevelMap;
 //End of user code
 
 /**
@@ -19,8 +21,9 @@ public abstract class Entity {
     protected int destY;
     protected boolean moving;
     protected double moveSpeed;
-    
-    public abstract void update();
+    protected LevelMap levelMap;
+
+	public abstract void update();
     
 	public void draw(MinuetoWindow w, int x, int y) {
 		w.draw(this.getAnimation().getCurrentFrame(), x, y);
@@ -54,7 +57,31 @@ public abstract class Entity {
 	public void setDest(int x, int y) {
 		this.destX = x;
 		this.destY = y;
+		fixBounds();
 	}
+	
+    public LevelMap getLevelMap() {
+		return levelMap;
+	}
+
+	public void setLevelMap(LevelMap levelMap) {
+		this.levelMap = levelMap;
+	}
+    
+    public void fixBounds() {
+        if (destX < this.getLevelMap().getXmin()) {
+            this.destX = this.getLevelMap().getXmin();
+        }
+        if (destY < this.getLevelMap().getYmin()) {
+            this.destY = this.getLevelMap().getYmin();
+        }
+        if (destX > this.getLevelMap().getXmax()) {
+            this.destX = this.getLevelMap().getXmax();
+        }
+        if (destX > this.getLevelMap().getYmax()) {
+            this.destY = this.getLevelMap().getYmax();
+        }
+    }
 
 	public boolean isMoving() {
 		return moving;
