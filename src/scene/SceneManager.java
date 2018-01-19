@@ -56,7 +56,7 @@ public class SceneManager {
         return true;
     }
 
-    Scene getCurrentScene() {
+    public Scene getCurrentScene() {
         return this.currentScene;
     }
 

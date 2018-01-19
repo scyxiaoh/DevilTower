@@ -189,7 +189,12 @@ public class Player extends DirectionedEntity {
         	nextTile = this.levelMap.getTile(col-1, rol);
         	
         }
-        if (nextTile != null && nextTile.getType() == TileType.Ground) return this.encounter(nextTile.getMyEntity());
+        if (nextTile != null && nextTile.getType() == TileType.Ground) {
+        	if (nextTile.getMyEntity() != null) {
+        		return nextTile.getMyEntity().getEncountered(this);
+        	}
+        	else return true;
+        }
         else return false;
     }
     

@@ -101,7 +101,7 @@ public class GameScene extends Scene {
         return true;
     }
 
-    boolean addDialogueQueueAt(int index, Dialogue a) {
+    public boolean addDialogueQueueAt(int index, Dialogue a) {
         boolean contains = dialogueQueue.contains(a);
         if (contains) {
             return false;
@@ -110,18 +110,18 @@ public class GameScene extends Scene {
         return true;
     }
 
-    boolean removeDialogueQueueAt(int index) {
+    public boolean removeDialogueQueueAt(int index) {
         Dialogue removedElement = dialogueQueue.remove(index);
         boolean result = removedElement != null;
         return result;
     }
 
-    Dialogue getDialogueQueueAt(int index) {
+    public Dialogue getDialogueQueueAt(int index) {
         Dialogue associated = dialogueQueue.get(index);
         return associated;
     }
 
-    boolean addDialogueQueue(Dialogue a) {
+    public boolean addDialogueQueue(Dialogue a) {
         boolean contains = dialogueQueue.contains(a);
         if (contains) {
             return false;
@@ -130,22 +130,22 @@ public class GameScene extends Scene {
         return added;
     }
 
-    boolean removeDialogueQueue(Dialogue a) {
+    public boolean removeDialogueQueue(Dialogue a) {
         boolean removed = dialogueQueue.remove(a);
         return removed;
     }
 
-    boolean containsDialogueQueue(Dialogue a) {
+    public boolean containsDialogueQueue(Dialogue a) {
         boolean contains = dialogueQueue.contains(a);
         return contains;
     }
 
-    int sizeOfDialogueQueue() {
+    public int sizeOfDialogueQueue() {
         int size = dialogueQueue.size();
         return size;
     }
 
-    ArrayList<Dialogue> getDialogueQueue() {
+    public ArrayList<Dialogue> getDialogueQueue() {
         return this.dialogueQueue;
     }
 

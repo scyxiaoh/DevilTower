@@ -25,28 +25,28 @@ public class Assets {
     	playerTextures = new ArrayList<MinuetoImage>();
     	
         MinuetoImage tempImage = loadImageAt("diamond.gif");
-        addEntityTextures(tempImage.crop(0, 0, 16, 16));
+        addEntityTextures(tempImage.crop(0, 0, 16, 16));	//[0] diamond
         
         tempImage = loadImageAt("tileTextures.png");
-        addTileTextures(tempImage.crop(0, 0, 32, 32)) ;	//ground tile
-        addTileTextures(tempImage.crop(5*32, 2*32, 32, 32)); //wall left end
-        addTileTextures(tempImage.crop(6*32, 2*32, 32, 32)); //wall central
-        addTileTextures(tempImage.crop(7*32, 2*32, 32, 32)); //wall right end
-        addTileTextures(tempImage.crop(5*32, 32, 32, 32)); //empty tile
+        addTileTextures(tempImage.crop(0, 0, 32, 32)) ;	//[0] ground tile
+        addTileTextures(tempImage.crop(5*32, 2*32, 32, 32)); //[1] wall left end
+        addTileTextures(tempImage.crop(6*32, 2*32, 32, 32)); //[2] wall central
+        addTileTextures(tempImage.crop(7*32, 2*32, 32, 32)); //[3] wall right end
+        addTileTextures(tempImage.crop(5*32, 32, 32, 32)); //[4] empty tile
 		
 		tempImage = loadImageAt("Actor06-Braver02.png");
 		for (int i = 0; i < 4 ;i++){
 			for (int j = 0; j < 4; j++){
 				addPlayerTextures(tempImage.crop(j*32, i*32, 32, 32));//player textures
 			}
-		}	// [0-3]- font; [4-7]- left; [8-11]- right; [12-15]- back
+		}	// [0,3]- font; [4,7]- left; [8,11]- right; [12,15]- back
 		
 		tempImage = loadImageAt("Item01-01.png");
         addEntityTextures(tempImage.crop(0, 0, 32, 32)); // [1] yellow key
         addEntityTextures(tempImage.crop(32, 0, 32, 32)); // [2] blue key
         addEntityTextures(tempImage.crop(64, 0, 32, 32)); // [3] red key
         
-        tempImage = loadImageAt("Event01-Door01.png"); //[4-7] yellow door [8-11] blue door [12-15] red door
+        tempImage = loadImageAt("Event01-Door01.png"); //[4,7] yellow door [8,11] blue door [12,15] red door
         addEntityTextures(tempImage.crop(0, 0, 32, 32));
         addEntityTextures(tempImage.crop(0, 32, 32, 32));
         addEntityTextures(tempImage.crop(0, 64, 32, 32));
@@ -64,8 +64,10 @@ public class Assets {
         addEntityTextures(tempImage.crop(0, 0, 32, 32));
         addEntityTextures(tempImage.crop(32, 0, 32, 32));
         
-        tempImage = loadImageAt("Actor01-Braver17.png"); // [18] elf
-        addEntityTextures(tempImage.crop(0, 0, 32, 32));
+        tempImage = loadImageAt("Actor01-Braver17.png"); // [18,21] elf
+		for (int i = 0; i < 4; i++){
+			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
+		}
         
         
     }
@@ -127,7 +129,7 @@ public class Assets {
         return size;
     }
 
-    static ArrayList<MinuetoImage> getTileTextures() {
+    public static ArrayList<MinuetoImage> getTileTextures() {
         return tileTextures;
     }
 
@@ -175,7 +177,7 @@ public class Assets {
         return size;
     }
 
-    static ArrayList<MinuetoImage> getEntityTextures() {
+    public static ArrayList<MinuetoImage> getEntityTextures() {
         return entityTextures;
     }
 
@@ -223,7 +225,7 @@ public class Assets {
         return size;
     }
 
-    static ArrayList<MinuetoImage> getPlayerTextures() {
+    public static ArrayList<MinuetoImage> getPlayerTextures() {
         return playerTextures;
     }
 }
