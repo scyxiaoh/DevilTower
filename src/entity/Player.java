@@ -2,11 +2,12 @@ package entity;
 
 // Start of user code for imports
 import java.util.*;
-import org.minueto.window.MinuetoWindow;
-// End of user code
 
-import map.Tile;
-import map.TileType;
+import org.minueto.image.MinuetoImage;
+import org.minueto.window.MinuetoWindow;
+import game.Assets;
+import map.*;
+//End of user code
 
 /**
  * Player class definition.
@@ -20,21 +21,31 @@ public class Player extends DirectionedEntity {
     protected int defence;
     protected int level;
     protected int experience;
-    protected String name;
     protected Weapon myWeapon;
     protected Armor myArmor;
     
-    public Player(Direction d, DirectedAnimation a, String n) {
-    	super(d,a);
-        this.name = n;
+    public Player(String name, int x, int y, LevelMap m, Direction d) {
+    	super(name, x, y, m, d);
         this.level = 1;
         this.experience = 0;
         this.attackDamage = 10;
         this.defence = 10;
         this.health = 100;
         this.score = 0;
+        this.moveSpeed = 4;
     }
-
+    
+	protected void initiateAnimation() {
+        MinuetoImage[][] playerSprites = new MinuetoImage[4][4];
+        for (int i = 0; i < 4; i++) {
+        	for (int j = 0; j < 4; j++) {
+        		playerSprites[i][j] = Assets.getPlayerTexturesAt(i*4 + j);
+        	}
+        }
+        DirectedAnimation playerAnimation = new DirectedAnimation(Direction.North, playerSprites[3], playerSprites[0], playerSprites[1], playerSprites[2]);
+        this.setAnimation(playerAnimation);
+	}
+	
     Weapon getMyWeapon() {
         return this.myWeapon;
     }
@@ -214,5 +225,8 @@ public class Player extends DirectionedEntity {
     public int getLvl(){
     	return this.level;
     }
-    
+
+	public boolean getEncountered(Player p) {
+		return false;
+	}
 }

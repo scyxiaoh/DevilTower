@@ -3,7 +3,6 @@ package entity;
 // Start of user code for imports
 import java.util.*;
 import org.minueto.window.MinuetoWindow;
-
 import map.LevelMap;
 //End of user code
 
@@ -13,8 +12,8 @@ import map.LevelMap;
  */
 public abstract class Entity {
 
-	protected int width;
-    protected int height;
+	protected String name;
+	protected int id;
     protected int positionX;
     protected int positionY;
     protected int destX;
@@ -23,15 +22,33 @@ public abstract class Entity {
     protected double moveSpeed;
     protected LevelMap levelMap;
 
+    public Entity(String name) {
+    	this.moving = false;
+	}
+    
+    public Entity(String name, int x, int y, LevelMap m) {
+    	this.name = name;
+    	this.positionX = x;
+    	this.positionY = y;
+    	this.destX = x;
+    	this.destY = y;
+    	this.levelMap = m;
+    	this.moving = false;
+    }
 	public abstract void update();
     
 	public void draw(MinuetoWindow w, int x, int y) {
 		w.draw(this.getAnimation().getCurrentFrame(), x, y);
 	}
 
+	public abstract boolean getEncountered(Player p);
     public abstract Animation getAnimation();
     
-    public int getPositionX() {
+    public String getName() {
+		return name;
+	}
+
+	public int getPositionX() {
 		return positionX;
 	}
 

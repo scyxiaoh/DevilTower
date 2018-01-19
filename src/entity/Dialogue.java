@@ -20,7 +20,7 @@ public class Dialogue {
     public Dialogue(Entity n, String c) {
         this.narrator = n;
         MinuetoFont f = new MinuetoFont("Arial",12,false,false);
-        boolean setMFont = setMFont(f);
+        setFont(f);
         int charIndex = 0;
         int lastEndOfIndex = 0;
         int endOfWordNotation = 0;
@@ -34,12 +34,12 @@ public class Dialogue {
                 if (i<c.length()-1&&c.charAt(i+1)!=' ') {
                     thisLine = c.substring(lastEndOfIndex,endOfWordNotation);
                     toBeAdded = new MinuetoText(thisLine,f,white,true);
-                    boolean addContents = addContents(toBeAdded);
+                    boolean addContents = addContent(toBeAdded);
                     i = endOfWordNotation+1;
                 } else {
                     thisLine = c.substring(lastEndOfIndex,i+1);
                     toBeAdded = new MinuetoText(thisLine,f,white,true);
-                    boolean addContents1 = addContents(toBeAdded);
+                    boolean addContents1 = addContent(toBeAdded);
                 }
                 charIndex = 0;
                 if (i<c.length()-1) {
@@ -53,7 +53,7 @@ public class Dialogue {
             if (i>=c.length() -1) {
                 thisLine = c.substring(lastEndOfIndex, i+1);
                 toBeAdded = new MinuetoText(thisLine,f,white,true);
-                boolean addContents2 = addContents(toBeAdded);
+                boolean addContents2 = addContent(toBeAdded);
             }
             if (c.charAt(i)==' ') {
                 endOfWordNotation = i-1;
@@ -62,7 +62,7 @@ public class Dialogue {
         }
     }
 
-    Entity getNarrator() {
+    public Entity getNarrator() {
         return this.narrator;
     }
 
@@ -80,21 +80,15 @@ public class Dialogue {
         return true;
     }
 
-    private boolean addContents(MinuetoText a) {
+    private boolean addContent(MinuetoText a) {
         int maximum = 16;
         int size = content.size();
-        boolean added = false;
+        boolean added = true;
         if (size == maximum) {
-            return added;
+            return false;
         }
         added = content.add(a);
         return added;
-    }
-
-    private boolean setMFont(MinuetoFont n) {
-        this.font = n;
-        boolean r = true;
-        return r;
     }
 
     boolean addContentAt(int index, MinuetoText a) {
@@ -125,16 +119,7 @@ public class Dialogue {
         boolean removed = content.remove(a);
         return removed;
     }
-
-    boolean addContent(MinuetoText a) {
-        boolean added = content.add(a);
-        return added;
-    }
-
-    Dialogue() {
-        ArrayList<MinuetoText> collection = new ArrayList<MinuetoText>();
-    }
-
+    
     boolean containsContent(MinuetoText a) {
         boolean contains = content.contains(a);
         return contains;
@@ -145,7 +130,7 @@ public class Dialogue {
         return size;
     }
 
-    ArrayList<MinuetoText> getContent() {
+    public ArrayList<MinuetoText> getContent() {
         return this.content;
     }
 }

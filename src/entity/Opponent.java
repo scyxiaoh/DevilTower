@@ -1,24 +1,22 @@
 package entity;
 
 import java.util.*;
+import map.LevelMap;
 
 public class Opponent extends DirectionedEntity {
-	protected OpponentType type;
-	protected String name;
+	
 	protected int attackDamage;
 	protected int armor;
 	protected int health;
 	protected int attackSpeed;
 	
 	
-	public Opponent(Direction d, DirectedAnimation a, OpponentType t, String n, int damage, int defence, int hp, int as) {
-		super(d, a);
-		this.type = t;
-		this.name = n;
-		this.attackDamage = damage;
-		this.armor = defence;
-		this.health = hp;
-		this.attackSpeed = as;
+	public Opponent(String name, int x, int y, LevelMap m, Direction d, DirectedAnimation a, int id) {
+		super(name, x, y, m, d, id);
+	}
+	
+	protected void initiateAnimation() {
+		// TODO Auto-generated method stub
 	}
 	
 	public int getSpeed(){
@@ -37,5 +35,9 @@ public class Opponent extends DirectionedEntity {
 			return false;
 		return true;
 	}
-
+	
+	public boolean getEncountered(Player p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

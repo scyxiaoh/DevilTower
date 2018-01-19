@@ -88,10 +88,6 @@ public class UndirectedAnimation extends Animation {
         return added;
     }
 
-    UndirectedAnimation() {
-        ArrayList<MinuetoImage> collection = new ArrayList<MinuetoImage>();
-    }
-
     boolean containsFrames(MinuetoImage a) {
         boolean contains = frames.contains(a);
         return contains;

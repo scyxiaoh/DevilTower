@@ -55,16 +55,7 @@ public class GameScene extends Scene {
         this.currentLevel = 0;
       
         //initiate the player object
-        MinuetoImage[][] playerSprites = new MinuetoImage[4][4];
-        for (int i = 0; i < 4; i++) {
-        	for (int j = 0; j < 4; j++) {
-        		playerSprites[i][j] = Assets.getPlayerTexturesAt(i*4 + j);
-        	}
-        }
-        DirectedAnimation playerAnimation = new DirectedAnimation(Direction.North, playerSprites[3], playerSprites[0], playerSprites[1], playerSprites[2]);
-        this.player = new Player(Direction.North, playerAnimation, "Warrior");
-        this.player.setPosition(10*32, 13*32);
-        this.player.setLevelMap(levels.get(currentLevel));
+        this.player = new Player("Warrior", 10*32, 13*32, levels.get(currentLevel), Direction.North);
         
         //initiate the camera
         levels.get(0).setCam((10-10)*32, (13-7)*32);
@@ -73,26 +64,32 @@ public class GameScene extends Scene {
     public void draw(MinuetoWindow w) {
     	w.clear(MinuetoColor.BLACK);
         levels.get(currentLevel).draw(w, this.getPlayer());     
-        drawUI(w);
+        displayUI(w);
     }
 
     public void handleInput() {
-        if (KeyboardHandler.isPressed(Keys.E)) {
-        	SceneManager sM = SceneManager.getInstance();
-        	sM.setPaused(true);
-        }
-        if (KeyboardHandler.isDown(Keys.UP)) {
-            player.move(Direction.North);
-        }
-        if (KeyboardHandler.isDown(Keys.DOWN)) {
-            player.move(Direction.South);
-        }
-        if (KeyboardHandler.isDown(Keys.LEFT)) {
-        	player.move(Direction.West);
-        }
-        if (KeyboardHandler.isDown(Keys.RIGHT)) {
-        	player.move(Direction.East);
-        }
+    	//block input except enter
+    	if (dialogueQueue != null && dialogueQueue.size() > 0) return;
+    	
+    	//handle input
+    	else {
+            if (KeyboardHandler.isPressed(Keys.E)) {
+            	SceneManager sM = SceneManager.getInstance();
+            	sM.setPaused(true);
+            }
+            if (KeyboardHandler.isDown(Keys.UP)) {
+                player.move(Direction.North);
+            }
+            if (KeyboardHandler.isDown(Keys.DOWN)) {
+                player.move(Direction.South);
+            }
+            if (KeyboardHandler.isDown(Keys.LEFT)) {
+            	player.move(Direction.West);
+            }
+            if (KeyboardHandler.isDown(Keys.RIGHT)) {
+            	player.move(Direction.East);
+            }
+    	}
     }
 
     Player getPlayer() {
@@ -284,7 +281,7 @@ public class GameScene extends Scene {
         }
     }
     
-    void drawUI(MinuetoWindow w){
+    void displayUI(MinuetoWindow w){
         MinuetoRectangle newRec = new MinuetoRectangle(672, 32, MinuetoColor.BLACK, true);
         w.draw(newRec, 0, 448);
         String tempString = "HP: " + player.getHealth();
@@ -321,5 +318,18 @@ public class GameScene extends Scene {
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 592, 454);
         
+    }
+    
+    void displayDialogue(MinuetoWindow w) {
+    	if (this.dialogueQueue != null && dialogueQueue.size() > 0) {
+    		Dialogue currentDialogue = this.dialogueQueue.get(0);
+			if (currentDialogue.getNarrator() != null){
+				w.draw(new MinuetoRectangle(32*13, 32*3, new MinuetoColor(1f,1f,1f,0.5f),true), 4*32, 10*32);
+				ArrayList<MinuetoText> content = currentDialogue.getContent();
+				for (int k = 0; k < content.size(); k++){
+					w.draw(content.get(k),  4*32, 10*32+12*k);
+				}
+			}
+    	}
     }
 }
