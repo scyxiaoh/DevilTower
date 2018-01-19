@@ -164,7 +164,6 @@ public class Player extends DirectionedEntity {
     public boolean nextPositionAvailable(Direction d) {
     	int col = this.positionX / 32;
     	int rol = this.positionY / 32;
-    	System.out.println(col + " "+ rol);
     	Tile nextTile = null;
         if(d == Direction.North && rol > this.levelMap.getYmin() / 32) {
         	nextTile = this.levelMap.getTile(col, rol-1);

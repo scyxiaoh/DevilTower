@@ -68,7 +68,7 @@ public class Game {
                 
             }
         }
-        this.nextFrameTime = (long)((9*nextFrameTime + System.nanoTime())/10 + nsPerFrame);
+        this.nextFrameTime = (long)(nextFrameTime + nsPerFrame);
         while (eventQueue.hasNext()) {
             eventQueue.handle();
         }
@@ -79,7 +79,7 @@ public class Game {
         if (timer >= 1000000000) {
             System.out.println("FPS: " + FPS);
             this.FPS = 0;
-            this.timer = 0;
+            this.timer = timer - 1000000000;
         }
     }
 
