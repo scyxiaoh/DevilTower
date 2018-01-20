@@ -17,22 +17,22 @@ public class Dialogue {
     protected MinuetoFont font;
     protected ArrayList<MinuetoText> content;
     
-    public Dialogue(Entity n, String c) {
+    public Dialogue(Entity n, String c, int width) {
         this.narrator = n;
-        MinuetoFont f = new MinuetoFont("Arial",12,false,false);
+        MinuetoFont f = new MinuetoFont("Arial",18,false,false);
         setFont(f);
         int charIndex = 0;
         int lastEndOfIndex = 0;
         int endOfWordNotation = 0;
         this.content = new ArrayList<MinuetoText>();
-        MinuetoColor white = MinuetoColor.WHITE;
+        MinuetoColor white = MinuetoColor.BLACK;
         String thisLine = " ";
         MinuetoText toBeAdded = null;
         int i = 0;
         while (i < c.length()) {
-            if (charIndex>=30) {
-                if (i<c.length()-1&&c.charAt(i+1)!=' ') {
-                    thisLine = c.substring(lastEndOfIndex,endOfWordNotation);
+            if (charIndex>=width && i<c.length()-1) {
+                if (c.charAt(i+1)!=' ') {
+                    thisLine = c.substring(lastEndOfIndex,endOfWordNotation+1);
                     toBeAdded = new MinuetoText(thisLine,f,white,true);
                     boolean addContents = addContent(toBeAdded);
                     i = endOfWordNotation+1;

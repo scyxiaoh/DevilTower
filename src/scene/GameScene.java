@@ -37,11 +37,13 @@ public class GameScene extends Scene {
     private int countKeysYellow;
     private int countKeysBlue;
     private int countKeysRed;
+    protected int dialogueCounter;
     
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
         levels = new ArrayList<LevelMap>();
         this.fontUI = new MinuetoFont("Arial", 17, false, false);
+        this.dialogueCounter = 0;
     }
 
     public void update() {
@@ -66,11 +68,16 @@ public class GameScene extends Scene {
     	w.clear(MinuetoColor.BLACK);
         levels.get(currentLevel).draw(w, this.getPlayer());     
         displayUI(w);
+        displayDialogue(w);
     }
 
     public void handleInput() {
     	//block input except enter
-    	if (dialogueQueue != null && dialogueQueue.size() > 0) return;
+    	if (dialogueQueue != null && dialogueQueue.size() > 0) {
+    		if (KeyboardHandler.isPressed(Keys.ENTER)) {
+    			this.passDialogue();
+    		}
+    	}
     	
     	//handle input
     	else {
@@ -329,9 +336,20 @@ public class GameScene extends Scene {
 				w.draw(new MinuetoRectangle(32*13, 32*3, new MinuetoColor(1f,1f,1f,0.5f),true), 4*32, 10*32);
 				ArrayList<MinuetoText> content = currentDialogue.getContent();
 				for (int k = 0; k < content.size(); k++){
-					w.draw(content.get(k),  4*32, 10*32+12*k);
+					w.draw(content.get(k),  6*32, 10*32+15*k+12);
 				}
 			}
+			if (dialogueCounter >= 0 && dialogueCounter < 60) {
+				w.draw(new MinuetoText("Press Enter To Continue",new MinuetoFont("Arial",14,false, true),MinuetoColor.WHITE),260,420);
+			}
+			else if (dialogueCounter == 119) {
+				this.dialogueCounter = -1;
+			}
+			this.dialogueCounter++;
     	}
+    }
+    
+    boolean passDialogue() {
+    	return removeDialogueQueueAt(0);
     }
 }

@@ -75,6 +75,7 @@ public class Game {
         SceneManager sM = SceneManager.getInstance();
         sM.update();
         sM.draw(this.window);
+        KeyboardHandler.update();
         this.FPS = FPS + 1;
         if (timer >= 1000000000) {
             System.out.println("FPS: " + FPS);
