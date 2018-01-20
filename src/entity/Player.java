@@ -148,25 +148,25 @@ public class Player extends DirectionedEntity {
     			boolean cameraMove = (this.positionX - this.levelMap.getCamX()) == 10 * 32 && (this.positionY - this.levelMap.getCamY()) == 7 * 32;
     	        if(d == Direction.North) {
     	        	this.setDest(this.getDestX(), this.getDestY()-32);
-        			if (cameraMove) {
+        			if (this.positionY-this.levelMap.getCamY() <= 7*32 && this.levelMap.getCamY() > 0) {
         				this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()-32);
         			}
     	        }
     	        else if (d == Direction.South) {
     	        	this.setDest(this.getDestX(), this.getDestY()+32);
-    	        	if (cameraMove) {
+    	        	if (this.positionY-this.levelMap.getCamY() >= 7*32 && this.levelMap.getCamY() < 7*32) {
     	        		this.levelMap.setCamDest(this.levelMap.getCamX(), this.levelMap.getCamY()+32);
     	        	}
     	        }
     	        else if (d == Direction.East) {
     	        	this.setDest(this.getDestX()+32, this.getDestY());
-    	        	if (cameraMove) {
+    	        	if (this.positionX-this.levelMap.getCamX() >= 10*32 && this.levelMap.getCamX() < 7*32) {
     	        		this.levelMap.setCamDest(this.levelMap.getCamX()+32, this.levelMap.getCamY());
     	        	}
     	        }
     	        else if (d == Direction.West) {
     	        	this.setDest(this.getDestX()-32, this.getDestY());
-    	        	if (cameraMove) {
+    	        	if (this.positionX-this.levelMap.getCamX() <= 10*32 && this.levelMap.getCamX() > 0) {
         	        	this.levelMap.setCamDest(this.levelMap.getCamX()-32, this.levelMap.getCamY());
     	        	}
     	        }	

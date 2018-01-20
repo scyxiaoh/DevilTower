@@ -319,7 +319,7 @@ public class GameScene extends Scene {
         }
         
         levels.get(1).getTile(10,19).setMyEntity(new KeyElement("DownStairs", 10*32, 19*32, levels.get(1), 7));
-        levels.get(1).getTile(13,18).setMyEntity(new KeyElement("YellowKey", 13*32, 8*32, levels.get(1), 1));
+        levels.get(1).getTile(13,18).setMyEntity(new KeyElement("YellowKey", 13*32, 18*32, levels.get(1), 1));
         levels.get(1).getTile(1,2).setMyEntity(new KeyElement("YellowKey", 1*32, 2*32, levels.get(1), 1));
         levels.get(1).getTile(1,3).setMyEntity(new KeyElement("YellowKey", 1*32, 3*32, levels.get(1), 1));
         levels.get(1).getTile(3,7).setMyEntity(new KeyElement("YellowKey", 3*32, 7*32, levels.get(1), 1));
