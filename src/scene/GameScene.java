@@ -263,9 +263,9 @@ public class GameScene extends Scene {
 			}
 		}
 		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10*32, 10*32, levels.get(0), 0));
-		levels.get(0).getTile(10, 0).setMyEntity(new KeyElement("UpStairs", 10*32, 0, levels.get(0), 7));
-		levels.get(0).getTile(10, 3).setMyEntity(new KeyElement("YellowDoor", 10*32, 3*32, levels.get(0),4));
-		levels.get(0).getTile(10, 5).setMyEntity(new KeyElement("YellowKey", 10*32, 5*32, levels.get(0),1));
+		levels.get(0).getTile(10, 0).setMyEntity(new KeyElement("UpStairs", 10*32, 0, levels.get(0), 0));
+		levels.get(0).getTile(10, 8).setMyEntity(new KeyElement("YellowDoor", 10*32, 8*32, levels.get(0),4));
+		levels.get(0).getTile(10, 9).setMyEntity(new KeyElement("YellowKey", 10*32, 9*32, levels.get(0),1));
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
@@ -318,7 +318,7 @@ public class GameScene extends Scene {
             }
         }
         
-        levels.get(1).getTile(10,19).setMyEntity(new KeyElement("DownStairs", 10*32, 19*32, levels.get(1), 0));
+        levels.get(1).getTile(10,19).setMyEntity(new KeyElement("DownStairs", 10*32, 19*32, levels.get(1), 7));
         levels.get(1).getTile(13,18).setMyEntity(new KeyElement("YellowKey", 13*32, 8*32, levels.get(1), 1));
         levels.get(1).getTile(1,2).setMyEntity(new KeyElement("YellowKey", 1*32, 2*32, levels.get(1), 1));
         levels.get(1).getTile(1,3).setMyEntity(new KeyElement("YellowKey", 1*32, 3*32, levels.get(1), 1));
@@ -416,29 +416,13 @@ public class GameScene extends Scene {
     	}
     }
     
-    public boolean changeLevelMap(int step){
-    	if (this.currentLevel + step >= 0 && this.currentLevel + step < this.levels.size())
-    	{
-    		this.currentLevel += step;
-    		switch(this.currentLevel){
-    		case 0:
-    			//this.player.setPosition(10, 0);
-                //this.cameraX = 0;
-                //this.cameraY = 0;
-    			break;
-    		case 1:
-                //this.player.setPosition(10, 19);
-                //System.out.println(this.player.getPositionX());
-                //this.cameraX = 0;
-                //this.cameraY = 7;
-                break;
-    		}
+    public boolean setCurrentLevel(int newLevel){
+    	if (newLevel >= 0 && newLevel < this.levels.size()) {
+    		this.currentLevel = newLevel;
+    		this.player.setLevelMap(this.getCurrentMap());
     		return true;
-    		
+    	} else {
+    		return false;
     	}
-    	
-    	return false;
     }
-    
-
 }

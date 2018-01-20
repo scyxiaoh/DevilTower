@@ -18,8 +18,8 @@ public class KeyElement extends UndirectedEntity{
 	protected void initiateAnimation() {
 		 MinuetoImage[] tempArray = {};
 		 switch (id){
-		 case 0: // DownStairs
-			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(16)};
+		 case 0: // UpStairs
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(17)};
 			 break;
 		 case 1: // YellowKey
 			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(1)};
@@ -39,8 +39,8 @@ public class KeyElement extends UndirectedEntity{
 		 case 6: // RedDoor
 			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(12),Assets.getEntityTexturesAt(13),Assets.getEntityTexturesAt(14),Assets.getEntityTexturesAt(15)};
 			 break; 
-		 case 7: // UpStairs
-			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(17)};
+		 case 7: // DownStairs
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(16)};
 			 break;
 		 }
 		 this.setAnimation(new UndirectedAnimation(tempArray));
@@ -52,8 +52,10 @@ public class KeyElement extends UndirectedEntity{
 		GameScene gS = (GameScene)scene;
 		
 		switch(id){
-		case 0:
-			gS.changeLevelMap(-1);
+		case 0:	// UpStairs level 0-0
+			gS.setCurrentLevel(1);
+			p.setPosition(10*32, 19*32);
+			gS.getCurrentMap().setCam(0, 7*32);
 			break;
 		case 1:
 			p.changeOnKeys(0, 1);
@@ -124,8 +126,10 @@ public class KeyElement extends UndirectedEntity{
 				});
 			}
 			break;
-		case 7:
-			gS.changeLevelMap(1);
+		case 7:	//DownStairs level 1-0
+			gS.setCurrentLevel(0);
+			p.setPosition(10*32, 0*32);
+			gS.getCurrentMap().setCam(0, 0);
 			break;
 		}
 		return false;
