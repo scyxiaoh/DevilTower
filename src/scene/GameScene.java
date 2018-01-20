@@ -32,6 +32,7 @@ public class GameScene extends Scene {
     protected boolean blockInput;
     protected Player player;
     protected ArrayList<Dialogue> dialogueQueue;
+    protected ArrayList<Event> eventQueue;
     protected ArrayList<LevelMap> levels;
     private MinuetoFont fontUI;
     private int countKeysYellow;
@@ -41,6 +42,7 @@ public class GameScene extends Scene {
     
     public GameScene() {
         dialogueQueue = new ArrayList<Dialogue>();
+        eventQueue = new ArrayList<Event>();
         levels = new ArrayList<LevelMap>();
         this.fontUI = new MinuetoFont("Arial", 17, false, false);
         this.dialogueCounter = 0;
@@ -48,6 +50,7 @@ public class GameScene extends Scene {
 
     public void update() {
         handleInput();
+        handleEvents();
         levels.get(currentLevel).update();
         player.update();
     }
@@ -205,7 +208,31 @@ public class GameScene extends Scene {
     ArrayList<LevelMap> getLevels() {
         return this.levels;
     }
+    
+    boolean removeEventQueueAt(int index) {
+        Event removedElement = eventQueue.remove(index);
+        boolean result = removedElement != null;
+        return result;
+    }
+    
+    Event getEventQueueAt(int index) {
+        Event associated = eventQueue.get(index);
+        return associated;
+    }
+    
+    public boolean addEventQueue(Event a) {
+        boolean contains = eventQueue.contains(a);
+        if (contains) {
+            return false;
+        }
+        boolean added = eventQueue.add(a);
+        return added;
+    }
 
+    public LevelMap getCurrentMap() {
+    	return this.levels.get(this.currentLevel);
+    }
+    
     public void constructLevels() {
 		Tile tempTile;
 		Entity tempEntity;
@@ -235,7 +262,7 @@ public class GameScene extends Scene {
 				levels.get(0).setTile(i, j, tempTile);
 			}
 		}
-		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10, 10, levels.get(0), 0));
+		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10*32, 10*32, levels.get(0), 0));
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
@@ -351,5 +378,13 @@ public class GameScene extends Scene {
     
     boolean passDialogue() {
     	return removeDialogueQueueAt(0);
+    }
+    
+    void handleEvents() {
+    	if (this.dialogueQueue != null && dialogueQueue.size() > 0) return;
+    	while(this.eventQueue.size() > 0) {
+    		this.getEventQueueAt(0).invoke();
+    		this.removeEventQueueAt(0);
+    	}
     }
 }

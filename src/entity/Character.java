@@ -42,6 +42,14 @@ public class Character extends UndirectedEntity{
 			gS.addDialogueQueue(new Dialogue(p, "Warrior:  Thank you, Elisa. I will kill those monsters and save the princess!", 40));
 			gS.addDialogueQueue(new Dialogue(this, "Elisa:  Good Luck, warrior. May the Mighty Tree bless you.", 40));
 			
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+					Scene scene = SceneManager.getInstance().getCurrentScene();
+					assert scene.getClass() == GameScene.class;
+					GameScene gS = (GameScene)scene;
+					gS.getCurrentMap().getTile(10, 10).setMyEntity(null);
+				}
+			});
 			return false;
 		}
 		return false;

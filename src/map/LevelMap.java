@@ -123,9 +123,6 @@ public class LevelMap {
                 //System.out.println("drawn: row " + row + " col " + col + " drawX " + drawX + " drawY " + drawY );
                 Entity entity = tile.getMyEntity();
                 if (entity != null) {
-                    Animation animation = entity.getAnimation();
-                    MinuetoImage currentFrame = animation.getCurrentFrame();
-                    w.draw(currentFrame, drawX, drawY);
                     entity.update();
                     drawX = entity.getPositionX() - camX;
                     drawY = entity.getPositionY() - camY;
