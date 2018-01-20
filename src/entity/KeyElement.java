@@ -4,6 +4,9 @@ import org.minueto.image.MinuetoImage;
 
 import game.Assets;
 import map.LevelMap;
+import scene.GameScene;
+import scene.Scene;
+import scene.SceneManager;
 
 public class KeyElement extends UndirectedEntity{
 	
@@ -43,7 +46,18 @@ public class KeyElement extends UndirectedEntity{
 	}
 	
 	public boolean getEncountered(Player p) {
-		// TODO Auto-generated method stub
+		Scene scene = SceneManager.getInstance().getCurrentScene();
+		assert scene.getClass() == GameScene.class;
+		GameScene gS = (GameScene)scene;
+		
+		switch(id){
+		case 0:
+			gS.changeLevelMap(-1);
+			break;
+		case 7:
+			gS.changeLevelMap(1);
+			break;
+		}
 		return false;
 	}
 }

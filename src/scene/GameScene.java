@@ -341,12 +341,6 @@ public class GameScene extends Scene {
         levels.get(1).getTile(17,2).setMyEntity(new KeyElement("BlueDoor", 17*32, 2*32, levels.get(1), 5));
         levels.get(1).getTile(4,2).setMyEntity(new KeyElement("RedDoor", 4*32, 2*32, levels.get(1), 6));
         levels.get(1).getTile(19,11).setMyEntity(new KeyElement("RedDoor", 19*32, 11*32, levels.get(1), 6));
-
-
-
-
-        
-
     }
     
     void displayUI(MinuetoWindow w){
@@ -418,5 +412,29 @@ public class GameScene extends Scene {
     		this.getEventQueueAt(0).invoke();
     		this.removeEventQueueAt(0);
     	}
+    }
+    
+    public boolean changeLevelMap(int step){
+    	if (this.currentLevel + step >= 0 && this.currentLevel + step < this.levels.size())
+    	{
+    		this.currentLevel += step;
+    		switch(this.currentLevel){
+    		case 0:
+    			//this.player.setPosition(10, 0);
+                //this.cameraX = 0;
+                //this.cameraY = 0;
+    			break;
+    		case 1:
+                //this.player.setPosition(10, 19);
+                //System.out.println(this.player.getPositionX());
+                //this.cameraX = 0;
+                //this.cameraY = 7;
+                break;
+    		}
+    		return true;
+    		
+    	}
+    	
+    	return false;
     }
 }
