@@ -16,7 +16,7 @@ public class Character extends UndirectedEntity{
 		switch(id) {
 		case 0:
 			//elf
-			a = new UndirectedAnimation((MinuetoImage[])Assets.getEntityTextures().subList(18, 22).toArray());
+			a = new UndirectedAnimation(new MinuetoImage[]{Assets.getEntityTexturesAt(18),Assets.getEntityTexturesAt(19),Assets.getEntityTexturesAt(20),Assets.getEntityTexturesAt(21)});
 		}
 		this.setAnimation(a);
 	}

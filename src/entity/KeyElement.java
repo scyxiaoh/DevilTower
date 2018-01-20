@@ -1,5 +1,8 @@
 package entity;
 
+import org.minueto.image.MinuetoImage;
+
+import game.Assets;
 import map.LevelMap;
 
 public class KeyElement extends UndirectedEntity{
@@ -9,8 +12,31 @@ public class KeyElement extends UndirectedEntity{
 	}
 
 	protected void initiateAnimation() {
-		// TODO Auto-generated method stub
-		
+		 MinuetoImage[] tempArray = {};
+		 switch (id){
+		 case 0: // DownStairs
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(16)};
+			 break;
+		 case 1: // YellowKey
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(1)};
+			 break;
+		 case 2: // BlueKey
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(2)};
+			 break;
+		 case 3: // RedKey
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(3)};
+			 break;
+		 case 4: // YellowDoor
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(4),Assets.getEntityTexturesAt(5),Assets.getEntityTexturesAt(6),Assets.getEntityTexturesAt(7)};
+			 break;
+		 case 5: // BlueDoor
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(8),Assets.getEntityTexturesAt(9),Assets.getEntityTexturesAt(10),Assets.getEntityTexturesAt(11)};
+			 break;
+		 case 6: // RedDoor
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(12),Assets.getEntityTexturesAt(13),Assets.getEntityTexturesAt(14),Assets.getEntityTexturesAt(15)};
+			 break; 
+		 }
+		 this.setAnimation(new UndirectedAnimation(tempArray));
 	}
 	
 	public boolean getEncountered(Player p) {

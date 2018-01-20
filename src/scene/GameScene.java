@@ -10,6 +10,7 @@ import org.minueto.image.MinuetoRectangle;
 import org.minueto.image.MinuetoText;
 import org.minueto.window.MinuetoWindow;
 import entity.*;
+import entity.Character;
 import game.Assets;
 import interactive.KeyboardHandler;
 import interactive.Keys;
@@ -224,10 +225,10 @@ public class GameScene extends Scene {
 				if ((j == 0||j == 8) && !(i == 1 || i == 19 || i == 0 || i == 20 || i == 10)){
 					tempTile = new Tile(TileType.Wall);
 				}
-
 				levels.get(0).setTile(i, j, tempTile);
 			}
 		}
+		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10, 10, levels.get(0), 0));
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
@@ -279,6 +280,7 @@ public class GameScene extends Scene {
                 levels.get(1).setTile(i, j, tempTile);
             }
         }
+
     }
     
     void displayUI(MinuetoWindow w){
