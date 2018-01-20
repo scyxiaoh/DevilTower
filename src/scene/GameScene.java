@@ -360,19 +360,19 @@ public class GameScene extends Scene {
         w.draw(toWrite, 304, 454);
         MinuetoImage toDraw = Assets.getEntityTexturesAt(1);
         w.draw(toDraw, 380, 448);
-        tempString = " : " + countKeysYellow;
+        tempString = " : " + player.getKeyNum(0);
         MinuetoColor yellow = MinuetoColor.YELLOW;
         toWrite = new MinuetoText(tempString, this.fontUI, yellow, true);
         w.draw(toWrite, 412, 454);
         toDraw = Assets.getEntityTexturesAt(2);
         w.draw(toDraw, 444, 448);
-        tempString = " : " + countKeysBlue;
+        tempString = " : " + player.getKeyNum(1);
         MinuetoColor blue = new MinuetoColor(140, 142, 252);
         toWrite = new MinuetoText(tempString, this.fontUI, blue, true);
         w.draw(toWrite, 476, 454);
         toDraw = Assets.getEntityTexturesAt(3);
         w.draw(toDraw, 508, 448);
-        tempString = " : " + countKeysRed;
+        tempString = " : " + player.getKeyNum(2);
         MinuetoColor red = MinuetoColor.RED;
         toWrite = new MinuetoText(tempString, this.fontUI, red, true);
         w.draw(toWrite, 540, 454);
@@ -437,4 +437,6 @@ public class GameScene extends Scene {
     	
     	return false;
     }
+    
+
 }

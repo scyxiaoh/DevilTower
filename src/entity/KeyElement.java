@@ -4,6 +4,7 @@ import org.minueto.image.MinuetoImage;
 
 import game.Assets;
 import map.LevelMap;
+import scene.Event;
 import scene.GameScene;
 import scene.Scene;
 import scene.SceneManager;
@@ -53,6 +54,75 @@ public class KeyElement extends UndirectedEntity{
 		switch(id){
 		case 0:
 			gS.changeLevelMap(-1);
+			break;
+		case 1:
+			p.changeOnKeys(0, 1);
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+					Scene scene = SceneManager.getInstance().getCurrentScene();
+					assert scene.getClass() == GameScene.class;
+					GameScene gS = (GameScene)scene;
+					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+				}
+			});
+			break;
+		case 2:
+			p.changeOnKeys(1, 1);
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+					Scene scene = SceneManager.getInstance().getCurrentScene();
+					assert scene.getClass() == GameScene.class;
+					GameScene gS = (GameScene)scene;
+					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+				}
+			});
+			break;
+		case 3:
+			p.changeOnKeys(2, 1);
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+					Scene scene = SceneManager.getInstance().getCurrentScene();
+					assert scene.getClass() == GameScene.class;
+					GameScene gS = (GameScene)scene;
+					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+				}
+			});
+			break;
+		case 4:
+			if (p.changeOnKeys(0, -1)){
+				gS.addEventQueue(new Event() {
+					public void invoke() {
+						Scene scene = SceneManager.getInstance().getCurrentScene();
+						assert scene.getClass() == GameScene.class;
+						GameScene gS = (GameScene)scene;
+						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+					}
+				});
+			}
+			break;
+		case 5:
+			if (p.changeOnKeys(1, -1)){
+				gS.addEventQueue(new Event() {
+					public void invoke() {
+						Scene scene = SceneManager.getInstance().getCurrentScene();
+						assert scene.getClass() == GameScene.class;
+						GameScene gS = (GameScene)scene;
+						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+					}
+				});
+			}
+			break;
+		case 6:
+			if (p.changeOnKeys(2, -1)){
+				gS.addEventQueue(new Event() {
+					public void invoke() {
+						Scene scene = SceneManager.getInstance().getCurrentScene();
+						assert scene.getClass() == GameScene.class;
+						GameScene gS = (GameScene)scene;
+						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+					}
+				});
+			}
 			break;
 		case 7:
 			gS.changeLevelMap(1);

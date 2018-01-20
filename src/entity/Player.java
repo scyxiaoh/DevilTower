@@ -23,6 +23,9 @@ public class Player extends DirectionedEntity {
     protected int experience;
     protected Weapon myWeapon;
     protected Armor myArmor;
+    private int countKeysYellow;
+    private int countKeysBlue;
+    private int countKeysRed;
     
     public Player(String name, int x, int y, LevelMap m, Direction d) {
     	super(name, x, y, m, d);
@@ -234,4 +237,41 @@ public class Player extends DirectionedEntity {
 	public boolean getEncountered(Player p) {
 		return false;
 	}
+	
+    public boolean changeOnKeys(int color, int number){
+    	switch(color){
+    	case 0: // yellow
+    		if(this.countKeysYellow + number > 0){
+    			this.countKeysYellow += number;
+    			return true;
+    		}
+    		break;
+    	case 1:
+    		if(this.countKeysBlue + number > 0){
+    			this.countKeysBlue += number;
+    			return true;
+    		}
+    		break;
+    	case 2:
+    		if(this.countKeysRed + number > 0){
+    			this.countKeysRed += number;
+    			return true;
+    		}
+    		break;
+    	}
+    	return false;
+    }
+    
+    public int getKeyNum(int color){
+    	switch(color){
+    	case 0:
+    		return this.countKeysYellow;
+		case 1:
+    		return this.countKeysBlue;
+    	case 2:
+    		return this.countKeysRed;
+    	}
+    	return 0;
+    	
+    }
 }
