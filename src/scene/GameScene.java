@@ -263,6 +263,7 @@ public class GameScene extends Scene {
 			}
 		}
 		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10*32, 10*32, levels.get(0), 0));
+		levels.get(0).getTile(10, 0).setMyEntity(new KeyElement("UpStairs", 10*32, 0, levels.get(0), 7));
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
@@ -314,6 +315,37 @@ public class GameScene extends Scene {
                 levels.get(1).setTile(i, j, tempTile);
             }
         }
+        
+        levels.get(1).getTile(10,19).setMyEntity(new KeyElement("DownStairs", 10*32, 19*32, levels.get(1), 0));
+        levels.get(1).getTile(13,18).setMyEntity(new KeyElement("YellowKey", 13*32, 8*32, levels.get(1), 1));
+        levels.get(1).getTile(1,2).setMyEntity(new KeyElement("YellowKey", 1*32, 2*32, levels.get(1), 1));
+        levels.get(1).getTile(1,3).setMyEntity(new KeyElement("YellowKey", 1*32, 3*32, levels.get(1), 1));
+        levels.get(1).getTile(3,7).setMyEntity(new KeyElement("YellowKey", 3*32, 7*32, levels.get(1), 1));
+        levels.get(1).getTile(5,6).setMyEntity(new KeyElement("YellowKey", 5*32, 6*32, levels.get(1), 1));
+        levels.get(1).getTile(1,16).setMyEntity(new KeyElement("YellowKey", 1*32, 16*32, levels.get(1), 1));
+        levels.get(1).getTile(19,2).setMyEntity(new KeyElement("YellowKey", 19*32, 2*32, levels.get(1), 1));
+        levels.get(1).getTile(1,9).setMyEntity(new KeyElement("BlueKey", 1*32, 9*32, levels.get(1), 2));
+        levels.get(1).getTile(3,11).setMyEntity(new KeyElement("BlueKey", 3*32, 11*32, levels.get(1), 2));
+        levels.get(1).getTile(11,8).setMyEntity(new KeyElement("BlueKey", 11*32, 8*32, levels.get(1), 2));
+        levels.get(1).getTile(1,18).setMyEntity(new KeyElement("RedKey", 1*32, 18*32, levels.get(1), 3));
+        levels.get(1).getTile(19,3).setMyEntity(new KeyElement("RedKey", 19*32, 3*32, levels.get(1), 3));
+        levels.get(1).getTile(1,7).setMyEntity(new KeyElement("YellowDoor", 1*32, 7*32, levels.get(1), 4));
+        levels.get(1).getTile(1,8).setMyEntity(new KeyElement("YellowDoor", 1*32, 8*32, levels.get(1), 4));
+        levels.get(1).getTile(2,4).setMyEntity(new KeyElement("YellowDoor", 2*32, 4*32, levels.get(1), 4));
+        levels.get(1).getTile(3,8).setMyEntity(new KeyElement("YellowDoor", 3*32, 8*32, levels.get(1), 4));
+        levels.get(1).getTile(3,13).setMyEntity(new KeyElement("YellowDoor", 3*32, 13*32, levels.get(1), 4));
+        levels.get(1).getTile(10,7).setMyEntity(new KeyElement("YellowDoor", 10*32, 7*32, levels.get(1), 4));
+        levels.get(1).getTile(15,7).setMyEntity(new KeyElement("YellowDoor", 15*32, 7*32, levels.get(1), 4));
+        levels.get(1).getTile(2,16).setMyEntity(new KeyElement("BlueDoor", 2*32, 16*32, levels.get(1), 5));
+        levels.get(1).getTile(2,18).setMyEntity(new KeyElement("BlueDoor", 2*32, 18*32, levels.get(1), 5));
+        levels.get(1).getTile(17,2).setMyEntity(new KeyElement("BlueDoor", 17*32, 2*32, levels.get(1), 5));
+        levels.get(1).getTile(4,2).setMyEntity(new KeyElement("RedDoor", 4*32, 2*32, levels.get(1), 6));
+        levels.get(1).getTile(19,11).setMyEntity(new KeyElement("RedDoor", 19*32, 11*32, levels.get(1), 6));
+
+
+
+
+        
 
     }
     

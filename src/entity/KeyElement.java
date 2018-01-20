@@ -35,6 +35,9 @@ public class KeyElement extends UndirectedEntity{
 		 case 6: // RedDoor
 			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(12),Assets.getEntityTexturesAt(13),Assets.getEntityTexturesAt(14),Assets.getEntityTexturesAt(15)};
 			 break; 
+		 case 7: // UpStairs
+			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(17)};
+			 break;
 		 }
 		 this.setAnimation(new UndirectedAnimation(tempArray));
 	}
