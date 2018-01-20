@@ -241,19 +241,19 @@ public class Player extends DirectionedEntity {
     public boolean changeOnKeys(int color, int number){
     	switch(color){
     	case 0: // yellow
-    		if(this.countKeysYellow + number > 0){
+    		if(this.countKeysYellow + number >= 0){
     			this.countKeysYellow += number;
     			return true;
     		}
     		break;
     	case 1:
-    		if(this.countKeysBlue + number > 0){
+    		if(this.countKeysBlue + number >= 0){
     			this.countKeysBlue += number;
     			return true;
     		}
     		break;
     	case 2:
-    		if(this.countKeysRed + number > 0){
+    		if(this.countKeysRed + number >= 0){
     			this.countKeysRed += number;
     			return true;
     		}

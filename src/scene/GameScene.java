@@ -264,6 +264,8 @@ public class GameScene extends Scene {
 		}
 		levels.get(0).getTile(10, 10).setMyEntity(new Character("elf", 10*32, 10*32, levels.get(0), 0));
 		levels.get(0).getTile(10, 0).setMyEntity(new KeyElement("UpStairs", 10*32, 0, levels.get(0), 7));
+		levels.get(0).getTile(10, 3).setMyEntity(new KeyElement("YellowDoor", 10*32, 3*32, levels.get(0),4));
+		levels.get(0).getTile(10, 5).setMyEntity(new KeyElement("YellowKey", 10*32, 5*32, levels.get(0),1));
 
 		//levelOne
 		levels.add(new LevelMap(21,1));
