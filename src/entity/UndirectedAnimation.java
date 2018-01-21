@@ -18,6 +18,7 @@ public class UndirectedAnimation extends Animation {
         this.index = 0;
         this.frames = new ArrayList<MinuetoImage>();
         this.playing = false;
+        this.timesPlayed = 0;
         for (int i = 0; i < f.length;  i ++) {
             MinuetoImage toBeAdded = f[i];
             boolean addFrame = addFrame(toBeAdded);
@@ -38,7 +39,10 @@ public class UndirectedAnimation extends Animation {
             if (timer >= speed) {
                 this.index = index + 1;
                 this.timer = 0;
-                if (index >= sizeOfFrames()) {
+                if (index == sizeOfFrames() - 1) {
+                    this.timesPlayed++;
+                }
+                if (index >= sizeOfFrames()) {;
                     this.index = 0;
                 }
             }

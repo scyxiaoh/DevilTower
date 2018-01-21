@@ -57,73 +57,31 @@ public class KeyElement extends UndirectedEntity{
 			p.setPosition(10*32, 19*32);
 			gS.getCurrentMap().setCam(0, 7*32);
 			break;
-		case 1:
+		case 1: // YellowKey
 			p.changeOnKeys(0, 1);
-			gS.addEventQueue(new Event() {
-				public void invoke() {
-					Scene scene = SceneManager.getInstance().getCurrentScene();
-					assert scene.getClass() == GameScene.class;
-					GameScene gS = (GameScene)scene;
-					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-				}
-			});
+			this.delete();
 			break;
-		case 2:
+		case 2: // BlueKey
 			p.changeOnKeys(1, 1);
-			gS.addEventQueue(new Event() {
-				public void invoke() {
-					Scene scene = SceneManager.getInstance().getCurrentScene();
-					assert scene.getClass() == GameScene.class;
-					GameScene gS = (GameScene)scene;
-					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-				}
-			});
+			this.delete();
 			break;
-		case 3:
+		case 3: // RedKey
 			p.changeOnKeys(2, 1);
-			gS.addEventQueue(new Event() {
-				public void invoke() {
-					Scene scene = SceneManager.getInstance().getCurrentScene();
-					assert scene.getClass() == GameScene.class;
-					GameScene gS = (GameScene)scene;
-					gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-				}
-			});
+			this.delete();
 			break;
-		case 4:
+		case 4: // YellowDoor
 			if (p.changeOnKeys(0, -1)){
-				gS.addEventQueue(new Event() {
-					public void invoke() {
-						Scene scene = SceneManager.getInstance().getCurrentScene();
-						assert scene.getClass() == GameScene.class;
-						GameScene gS = (GameScene)scene;
-						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-					}
-				});
+				this.playAnimation();
 			}
 			break;
-		case 5:
+		case 5: // BlueDoor
 			if (p.changeOnKeys(1, -1)){
-				gS.addEventQueue(new Event() {
-					public void invoke() {
-						Scene scene = SceneManager.getInstance().getCurrentScene();
-						assert scene.getClass() == GameScene.class;
-						GameScene gS = (GameScene)scene;
-						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-					}
-				});
+				this.playAnimation();
 			}
 			break;
-		case 6:
+		case 6: // RedDoor
 			if (p.changeOnKeys(2, -1)){
-				gS.addEventQueue(new Event() {
-					public void invoke() {
-						Scene scene = SceneManager.getInstance().getCurrentScene();
-						assert scene.getClass() == GameScene.class;
-						GameScene gS = (GameScene)scene;
-						gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
-					}
-				});
+				this.playAnimation();
 			}
 			break;
 		case 7:	//DownStairs level 1-0
@@ -133,5 +91,26 @@ public class KeyElement extends UndirectedEntity{
 			break;
 		}
 		return false;
+	}
+	
+	void delete() {
+		Scene scene = SceneManager.getInstance().getCurrentScene();
+		assert scene.getClass() == GameScene.class;
+		GameScene gS = (GameScene)scene;
+		gS.addEventQueue(new Event() {
+			public void invoke() {
+				gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+			}
+		});
+	}
+	
+	public void update() {
+		super.update();
+		switch(id) {
+		case 4: case 5: case 6:
+			if (this.animation.hasPlayed(1)) {
+				this.delete();
+			}
+		}
 	}
 }

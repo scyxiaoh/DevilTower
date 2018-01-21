@@ -34,4 +34,8 @@ public abstract class Animation {
 		this.playing = false;
 		this.timer = 0;
 	}
+	
+	public boolean hasPlayed(int i) { 
+		return timesPlayed == i; 
+	}
 }

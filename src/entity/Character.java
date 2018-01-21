@@ -44,9 +44,6 @@ public class Character extends UndirectedEntity{
 			
 			gS.addEventQueue(new Event() {
 				public void invoke() {
-					Scene scene = SceneManager.getInstance().getCurrentScene();
-					assert scene.getClass() == GameScene.class;
-					GameScene gS = (GameScene)scene;
 					gS.getCurrentMap().getTile(10, 10).setMyEntity(null);
 				}
 			});

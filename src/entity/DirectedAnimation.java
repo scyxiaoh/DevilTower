@@ -26,6 +26,7 @@ public class DirectedAnimation extends Animation {
         this.rightFrames = new ArrayList<MinuetoImage>();
         this.direction = initialD;
         this.playing = false;
+        this.timesPlayed = 0;
         for (int i = 0; i < u.length; i++) {
         	addFrames(Direction.North, u[i]);
         }
@@ -89,6 +90,9 @@ public class DirectedAnimation extends Animation {
             if (timer >= speed) {
                 this.index = index+1;
                 this.timer = 0;
+                if (index == sizeOfFrames(this.direction) - 1) {
+                    this.timesPlayed++;
+                }
                 if (index >= sizeOfFrames(this.direction)) {
                     this.index = 0;
                 }
