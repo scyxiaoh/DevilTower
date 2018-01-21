@@ -56,39 +56,42 @@ public class KeyElement extends UndirectedEntity{
 			gS.setCurrentLevel(1);
 			p.setPosition(10*32, 19*32);
 			gS.getCurrentMap().setCam(0, 7*32);
-			break;
+			return false;
 		case 1: // YellowKey
 			p.changeOnKeys(0, 1);
 			this.delete();
-			break;
+			return true;
 		case 2: // BlueKey
 			p.changeOnKeys(1, 1);
 			this.delete();
-			break;
+			return true;
 		case 3: // RedKey
 			p.changeOnKeys(2, 1);
 			this.delete();
-			break;
+			return true;
 		case 4: // YellowDoor
-			if (p.changeOnKeys(0, -1)){
+			if (!this.animation.isPlaying() && p.changeOnKeys(0, -1)){
 				this.playAnimation();
+				return true;
 			}
 			break;
 		case 5: // BlueDoor
-			if (p.changeOnKeys(1, -1)){
+			if (!this.animation.isPlaying() && p.changeOnKeys(1, -1)){
 				this.playAnimation();
+				return true;
 			}
 			break;
 		case 6: // RedDoor
-			if (p.changeOnKeys(2, -1)){
+			if (!this.animation.isPlaying() && p.changeOnKeys(2, -1)){
 				this.playAnimation();
+				return true;
 			}
 			break;
 		case 7:	//DownStairs level 1-0
 			gS.setCurrentLevel(0);
 			p.setPosition(10*32, 0*32);
 			gS.getCurrentMap().setCam(0, 0);
-			break;
+			return false;
 		}
 		return false;
 	}
