@@ -24,6 +24,7 @@ public class Assets {
     	tileTextures = new ArrayList<MinuetoImage>();
     	entityTextures = new ArrayList<MinuetoImage>();
     	playerTextures = new ArrayList<MinuetoImage>();
+    	opponentTextures = new ArrayList<MinuetoImage>();
     	
         MinuetoImage tempImage = loadImageAt("diamond.gif");
         addEntityTextures(tempImage.crop(0, 0, 16, 16));	//[0] diamond
@@ -70,10 +71,10 @@ public class Assets {
 			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
 		}
         
-		tempImage = loadImageAt("Actor05-Strange11.png");
+		tempImage = loadImageAt("Actor02-Monster12.png");
 		for (int i = 0; i < 4 ;i++){
 			for (int j = 0; j < 4; j++){
-				addOpponentTextures(tempImage.crop(j*32, i*32, 32, 32));//HuiTaiLang textures
+				addOpponentTextures(tempImage.crop(j*32, i*32, 32, 32));//Slime textures
 			}
 		}	// [0,3]- font; [4,7]- left; [8,11]- right; [12,15]- back
 		

@@ -31,7 +31,7 @@ public class Opponent extends DirectionedEntity {
 		     }
 		 }
 
-		 DirectedAnimation Animation = new DirectedAnimation(Direction.North, sprites[3], sprites[0], sprites[1], sprites[2]);
+		 DirectedAnimation Animation = new DirectedAnimation(Direction.South, sprites[3], sprites[0], sprites[1], sprites[2]);
 		 this.setAnimation(Animation);
 		 this.playAnimation();
 	}
