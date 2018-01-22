@@ -69,6 +69,10 @@ public class Assets {
 			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
 		}
         
+		tempImage = loadImageAt("opponents_slime.jpg"); // [22,25] slime
+		for (int i = 0; i < 4; i++){
+			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
+		}
         
     }
 
