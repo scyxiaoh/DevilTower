@@ -18,16 +18,22 @@ public class Opponent extends DirectionedEntity {
 	public Opponent(String name, int x, int y, LevelMap m, Direction d, int id) {
 		super(name, x, y, m, d, id);
 		this.initiateAnimation();
-	}
+	} 
 	
+	@Override
 	protected void initiateAnimation() {
-		 MinuetoImage[] tempArray = {};
-		 switch (id){
-		 case 0: // Slime
-			 tempArray = Assets.getEntityTextures().subList(23, 26).toArray(new MinuetoImage[4]);
-			 break;
+		// id: 0 - HuiTaiLang
+		
+		 MinuetoImage[][] sprites = new MinuetoImage[4][4];
+		 for (int i = 0; i < 4; i++) {
+			 for (int j = 0; j < 4; j++) {
+		     	sprites[i][j] = Assets.getOpponentTexturesAt(i*4 + j +16*id);
+		     }
 		 }
-		 this.setAnimation(new DirectedAnimation(direction, tempArray, tempArray, tempArray, tempArray));
+
+		 DirectedAnimation Animation = new DirectedAnimation(Direction.North, sprites[3], sprites[0], sprites[1], sprites[2]);
+		 this.setAnimation(Animation);
+		 this.playAnimation();
 	}
 	
 	public int getSpeed(){

@@ -18,6 +18,7 @@ public class Assets {
     protected static ArrayList<MinuetoImage> tileTextures;
     protected static ArrayList<MinuetoImage> entityTextures;
     protected static ArrayList<MinuetoImage> playerTextures;
+    protected static ArrayList<MinuetoImage> opponentTextures;
     
     public Assets() {
     	tileTextures = new ArrayList<MinuetoImage>();
@@ -69,10 +70,14 @@ public class Assets {
 			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
 		}
         
-		tempImage = loadImageAt("opponents_slime.jpg"); // [22,25] slime
-		for (int i = 0; i < 4; i++){
-			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
-		}
+		tempImage = loadImageAt("Actor05-Strange11.png");
+		for (int i = 0; i < 4 ;i++){
+			for (int j = 0; j < 4; j++){
+				addOpponentTextures(tempImage.crop(j*32, i*32, 32, 32));//HuiTaiLang textures
+			}
+		}	// [0,3]- font; [4,7]- left; [8,11]- right; [12,15]- back
+		
+		
         
     }
 
@@ -232,4 +237,53 @@ public class Assets {
     public static ArrayList<MinuetoImage> getPlayerTextures() {
         return playerTextures;
     }
+    
+    static boolean addOpponentTexturesAt(int index, MinuetoImage a) {
+        boolean contains = opponentTextures.contains(a);
+        if (contains) {
+            return false;
+        }
+        opponentTextures.add(index, a);
+        return true;
+    }
+
+    static boolean removeOpponentTexturesAt(int index) {
+        MinuetoImage removedElement = opponentTextures.remove(index);
+        boolean result = removedElement != null;
+        return result;
+    }
+
+    public static MinuetoImage getOpponentTexturesAt(int index) {
+        MinuetoImage associated = opponentTextures.get(index);
+        return associated;
+    }
+
+    static boolean addOpponentTextures(MinuetoImage a) {
+        boolean contains = opponentTextures.contains(a);
+        if (contains) {
+            return false;
+        }
+        boolean added = opponentTextures.add(a);
+        return added;
+    }
+
+    static boolean removeOpponentTextures(MinuetoImage a) {
+        boolean removed = opponentTextures.remove(a);
+        return removed;
+    }
+
+    static boolean containsOpponentTextures(MinuetoImage a) {
+        boolean contains = opponentTextures.contains(a);
+        return contains;
+    }
+
+    static int sizeOfOpponentTextures() {
+        int size = opponentTextures.size();
+        return size;
+    }
+
+    public static ArrayList<MinuetoImage> getOpponentTextures() {
+        return opponentTextures;
+    }
+
 }
