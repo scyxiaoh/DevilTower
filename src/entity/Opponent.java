@@ -6,6 +6,10 @@ import org.minueto.image.MinuetoImage;
 
 import game.Assets;
 import map.LevelMap;
+import scene.Event;
+import scene.GameScene;
+import scene.Scene;
+import scene.SceneManager;
 
 public class Opponent extends DirectionedEntity {
 	
@@ -36,11 +40,11 @@ public class Opponent extends DirectionedEntity {
 		 this.playAnimation();
 	}
 	
-	public int getSpeed(){
+	public int getAttackSpeed(){
 		return this.attackSpeed;
 	}
 	
-	public int getDamage(){
+	public int getAttackDamage(){
 		return this.attackDamage;
 	}
 	
@@ -56,5 +60,16 @@ public class Opponent extends DirectionedEntity {
 	public boolean getEncountered(Player p) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public void delete() {
+		Scene scene = SceneManager.getInstance().getCurrentScene();
+		assert scene.getClass() == GameScene.class;
+		GameScene gS = (GameScene)scene;
+		gS.addEventQueue(new Event() {
+			public void invoke() {
+				gS.getCurrentMap().getTile(positionX/32, positionY/32).setMyEntity(null);
+			}
+		});
 	}
 }

@@ -31,13 +31,11 @@ public class GameScene extends Scene {
     protected int currentLevel;
     protected boolean blockInput;
     protected Player player;
+    protected Combat currentCombat;
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<Event> eventQueue;
     protected ArrayList<LevelMap> levels;
     private MinuetoFont fontUI;
-    private int countKeysYellow;
-    private int countKeysBlue;
-    private int countKeysRed;
     protected int dialogueCounter;
     
     public GameScene() {
@@ -235,9 +233,6 @@ public class GameScene extends Scene {
     
     public void constructLevels() {
 		Tile tempTile;
-		Entity tempEntity;
-		Animation tempAnimation;
-		MinuetoImage[] tempImageArray;
 		
 		//levelZero
 		levels.add(new LevelMap(21,0));
@@ -426,5 +421,9 @@ public class GameScene extends Scene {
     	} else {
     		return false;
     	}
+    }
+    
+    public void setCurrentCombat(Combat c) {
+    	this.currentCombat = c;
     }
 }
