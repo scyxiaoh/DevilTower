@@ -343,6 +343,8 @@ public class GameScene extends Scene {
     }
     
     void displayUI(MinuetoWindow w){
+    	MinuetoImage toDraw = player.getWeapon().getIcon();
+    	w.draw(toDraw, 10, 10);
         MinuetoRectangle newRec = new MinuetoRectangle(672, 32, MinuetoColor.BLACK, true);
         w.draw(newRec, 0, 448);
         String tempString = "HP: " + player.getHealth();
@@ -357,7 +359,7 @@ public class GameScene extends Scene {
         tempString = "Exp: " + player.getExp();
         toWrite = new MinuetoText(tempString, this.fontUI,  MinuetoColor.WHITE, true);
         w.draw(toWrite, 304, 454);
-        MinuetoImage toDraw = Assets.getEntityTexturesAt(1);
+        toDraw = Assets.getEntityTexturesAt(1);
         w.draw(toDraw, 380, 448);
         tempString = " : " + player.getKeyNum(0);
         MinuetoColor yellow = MinuetoColor.YELLOW;

@@ -21,7 +21,7 @@ public abstract class Item {
     	this.setIcon(i);
     }
     
-    MinuetoImage getIcon() {
+    public MinuetoImage getIcon() {
         return this.icon;
     }
 

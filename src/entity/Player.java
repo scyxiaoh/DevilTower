@@ -267,4 +267,8 @@ public class Player extends DirectionedEntity {
     	return 0;
     	
     }
+    
+    public Weapon getWeapon(){
+    	return this.myWeapon;
+    }
 }
