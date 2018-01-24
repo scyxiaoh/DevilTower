@@ -15,6 +15,12 @@ public abstract class Item {
     protected String description;
     protected MinuetoImage icon;
     
+    public Item(String n, String d, MinuetoImage i){
+    	this.name = n;
+    	this.description = d;
+    	this.setIcon(i);
+    }
+    
     MinuetoImage getIcon() {
         return this.icon;
     }

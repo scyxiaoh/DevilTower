@@ -70,6 +70,10 @@ public class Assets {
 		for (int i = 0; i < 4; i++){
 			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));
 		}
+		
+		tempImage = loadImageAt("Item01-08.png");
+		addEntityTextures(tempImage.crop(0, 32, 32, 32)); // [22] diamond sword
+		
         
 		tempImage = loadImageAt("Actor02-Monster12.png");
 		for (int i = 0; i < 4 ;i++){

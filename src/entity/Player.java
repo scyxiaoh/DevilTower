@@ -36,6 +36,8 @@ public class Player extends DirectionedEntity {
         this.health = 100;
         this.score = 0;
         this.moveSpeed = 4;
+        this.equipWeapon(new Weapon("Grandpa's Diamond Sword", "A diamond sword which has been used carefully. Grandpa said that as a last resort"
+        		+ "	 you can go all out with it one day, it will show your miracles.", Assets.getEntityTexturesAt(22), 10, 1));
     }
     
 	protected void initiateAnimation() {
