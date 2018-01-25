@@ -35,7 +35,7 @@ public class GameScene extends Scene {
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<Event> eventQueue;
     protected ArrayList<LevelMap> levels;
-    protected ArrayList<Infomation> infoQueue;
+    protected ArrayList<Information> infoQueue;
     private MinuetoFont fontUI;
     protected int dialogueCounter;
     
@@ -43,7 +43,7 @@ public class GameScene extends Scene {
         dialogueQueue = new ArrayList<Dialogue>();
         eventQueue = new ArrayList<Event>();
         levels = new ArrayList<LevelMap>();
-        infoQueue = new ArrayList<Infomation>();
+        infoQueue = new ArrayList<Information>();
         this.fontUI = new MinuetoFont("Arial", 17, false, false);
         this.dialogueCounter = 0;
     }
@@ -243,7 +243,7 @@ public class GameScene extends Scene {
         return added;
     }
     
-    public boolean addInfoQueueAt(int index, Infomation a) {
+    public boolean addInfoQueueAt(int index, Information a) {
         boolean contains = infoQueue.contains(a);
         if (contains) {
             return false;
@@ -252,7 +252,7 @@ public class GameScene extends Scene {
         return true;
     }
     
-    public boolean removeInfoQueue(Infomation a) {
+    public boolean removeInfoQueue(Information a) {
         boolean removed = infoQueue.remove(a);
         return removed;
     }
@@ -434,7 +434,6 @@ public class GameScene extends Scene {
     
     void displayInfomation(MinuetoWindow w) {
 		for (int i = 0; i < infoQueue.size(); i++){
-			System.out.println("display");
             MinuetoColor transparency = new MinuetoColor(1f, 1f, 1f, 1.0f - 0.1f * i);
 			w.draw(new MinuetoText(infoQueue.get(i).getContent(), fontUI, transparency),4,32*13-i*16);
 		}
@@ -466,8 +465,7 @@ public class GameScene extends Scene {
     	this.currentCombat = c;
     }
     
-    public void pushInfomation(Infomation i) {
+    public void pushInformation(Information i) {
     	this.addInfoQueueAt(0, i);
-    	System.out.println(this.infoQueue.size());
     }
 }

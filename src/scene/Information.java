@@ -1,11 +1,11 @@
 package scene;
 
-public class Infomation {
+public class Information {
 	
 	protected String content;
 	protected int timer;
 	
-	public Infomation(String content) {
+	public Information(String content) {
 		this.content = content;
 		this.timer = 0;
 	}

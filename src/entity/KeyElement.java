@@ -6,7 +6,7 @@ import game.Assets;
 import map.LevelMap;
 import scene.Event;
 import scene.GameScene;
-import scene.Infomation;
+import scene.Information;
 import scene.Scene;
 import scene.SceneManager;
 
@@ -60,37 +60,37 @@ public class KeyElement extends UndirectedEntity{
 			return false;
 		case 1: // YellowKey
 			p.changeOnKeys(0, 1);
-			gS.pushInfomation(new Infomation("Obtained Yellow Key x 1"));
+			gS.pushInformation(new Information("Obtained Yellow Key x 1"));
 			this.delete();
 			return true;
 		case 2: // BlueKey
 			p.changeOnKeys(1, 1);
-			gS.pushInfomation(new Infomation("Obtained Blue Key x 1"));
+			gS.pushInformation(new Information("Obtained Blue Key x 1"));
 			this.delete();
 			return true;
 		case 3: // RedKey
 			p.changeOnKeys(2, 1);
-			gS.pushInfomation(new Infomation("Obtained Red Key x 1"));
+			gS.pushInformation(new Information("Obtained Red Key x 1"));
 			this.delete();
 			return true;
 		case 4: // YellowDoor
 			if (!this.animation.isPlaying() && p.changeOnKeys(0, -1)){
 				this.playAnimation();
-				gS.pushInfomation(new Infomation("Used Yellow Key x 1"));
+				gS.pushInformation(new Information("Used Yellow Key x 1"));
 				return true;
 			}
 			break;
 		case 5: // BlueDoor
 			if (!this.animation.isPlaying() && p.changeOnKeys(1, -1)){
 				this.playAnimation();
-				gS.pushInfomation(new Infomation("Used Blue Key x 1"));
+				gS.pushInformation(new Information("Used Blue Key x 1"));
 				return true;
 			}
 			break;
 		case 6: // RedDoor
 			if (!this.animation.isPlaying() && p.changeOnKeys(2, -1)){
 				this.playAnimation();
-				gS.pushInfomation(new Infomation("Used Red Key x 1"));
+				gS.pushInformation(new Information("Used Red Key x 1"));
 				return true;
 			}
 			break;

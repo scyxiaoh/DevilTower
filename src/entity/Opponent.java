@@ -8,6 +8,7 @@ import game.Assets;
 import map.LevelMap;
 import scene.Event;
 import scene.GameScene;
+import scene.Information;
 import scene.Scene;
 import scene.SceneManager;
 
@@ -75,6 +76,7 @@ public class Opponent extends DirectionedEntity {
 		gS.setCurrentCombat(new Combat(p, this, new Event() {
 			public void invoke() {
 				p.increaseExperience(10);
+				gS.pushInformation(new Information("Experience + 10"));
 			}
 		}));
 		return false;
