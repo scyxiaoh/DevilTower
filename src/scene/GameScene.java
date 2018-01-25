@@ -35,6 +35,7 @@ public class GameScene extends Scene {
     protected ArrayList<Dialogue> dialogueQueue;
     protected ArrayList<Event> eventQueue;
     protected ArrayList<LevelMap> levels;
+    protected ArrayList<Infomation> infoQueue;
     private MinuetoFont fontUI;
     protected int dialogueCounter;
     
@@ -42,6 +43,7 @@ public class GameScene extends Scene {
         dialogueQueue = new ArrayList<Dialogue>();
         eventQueue = new ArrayList<Event>();
         levels = new ArrayList<LevelMap>();
+        infoQueue = new ArrayList<Infomation>();
         this.fontUI = new MinuetoFont("Arial", 17, false, false);
         this.dialogueCounter = 0;
     }
@@ -54,6 +56,9 @@ public class GameScene extends Scene {
         	this.currentCombat.update();
         }
         player.update();
+        for (int i = this.infoQueue.size()-1; i >= 0; i--) {
+        	this.infoQueue.get(i).update();
+        }
     }
 
     public void init() {
@@ -77,6 +82,7 @@ public class GameScene extends Scene {
         } else {
             displayDialogue(w);
         }
+        displayInfomation(w);
     }
 
     public void handleInput() {
@@ -235,6 +241,20 @@ public class GameScene extends Scene {
         }
         boolean added = eventQueue.add(a);
         return added;
+    }
+    
+    public boolean addInfoQueueAt(int index, Infomation a) {
+        boolean contains = infoQueue.contains(a);
+        if (contains) {
+            return false;
+        }
+        infoQueue.add(index, a);
+        return true;
+    }
+    
+    public boolean removeInfoQueue(Infomation a) {
+        boolean removed = infoQueue.remove(a);
+        return removed;
     }
 
     public LevelMap getCurrentMap() {
@@ -412,6 +432,14 @@ public class GameScene extends Scene {
     	}
     }
     
+    void displayInfomation(MinuetoWindow w) {
+		for (int i = 0; i < infoQueue.size(); i++){
+			System.out.println("display");
+            MinuetoColor transparency = new MinuetoColor(1f, 1f, 1f, 1.0f - 0.1f * i);
+			w.draw(new MinuetoText(infoQueue.get(i).getContent(), fontUI, transparency),4,32*13-i*16);
+		}
+    }
+    
     boolean passDialogue() {
     	return removeDialogueQueueAt(0);
     }
@@ -436,5 +464,10 @@ public class GameScene extends Scene {
     
     public void setCurrentCombat(Combat c) {
     	this.currentCombat = c;
+    }
+    
+    public void pushInfomation(Infomation i) {
+    	this.addInfoQueueAt(0, i);
+    	System.out.println(this.infoQueue.size());
     }
 }
