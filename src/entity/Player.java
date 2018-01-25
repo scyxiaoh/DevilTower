@@ -271,4 +271,8 @@ public class Player extends DirectionedEntity {
     public Weapon getWeapon(){
     	return this.myWeapon;
     }
+    
+    public void increaseExperience(int change) {
+    	this.experience = this.experience + change;
+    }
 }

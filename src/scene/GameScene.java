@@ -50,6 +50,9 @@ public class GameScene extends Scene {
         handleInput();
         handleEvents();
         levels.get(currentLevel).update();
+        if(this.currentCombat != null) {
+        	this.currentCombat.update();
+        }
         player.update();
     }
 
@@ -69,10 +72,17 @@ public class GameScene extends Scene {
     	w.clear(MinuetoColor.BLACK);
         levels.get(currentLevel).draw(w, this.getPlayer());     
         displayUI(w);
-        displayDialogue(w);
+        if (this.currentCombat != null) {
+        	this.currentCombat.draw(w);
+        } else {
+            displayDialogue(w);
+        }
     }
 
     public void handleInput() {
+    	//block input 
+    	if (this.currentCombat != null) return;
+    	
     	//block input except enter
     	if (dialogueQueue != null && dialogueQueue.size() > 0) {
     		if (KeyboardHandler.isPressed(Keys.ENTER)) {
@@ -338,7 +348,7 @@ public class GameScene extends Scene {
         levels.get(1).getTile(17,2).setMyEntity(new KeyElement("BlueDoor", 17*32, 2*32, levels.get(1), 5));
         levels.get(1).getTile(4,2).setMyEntity(new KeyElement("RedDoor", 4*32, 2*32, levels.get(1), 6));
         levels.get(1).getTile(19,11).setMyEntity(new KeyElement("RedDoor", 19*32, 11*32, levels.get(1), 6));
-        levels.get(1).getTile(9, 3).setMyEntity(new Opponent("HuiTaiLang", 9*32, 3*32, levels.get(1), Direction.South, 0));
+        levels.get(1).getTile(9, 3).setMyEntity(new Opponent("Slime", 9*32, 3*32, levels.get(1), Direction.South, 0, 15, 0, 200, 1));
     }
     
     void displayUI(MinuetoWindow w){

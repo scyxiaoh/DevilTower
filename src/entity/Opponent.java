@@ -19,9 +19,12 @@ public class Opponent extends DirectionedEntity {
 	protected int attackSpeed;
 	
 	
-	public Opponent(String name, int x, int y, LevelMap m, Direction d, int id) {
+	public Opponent(String name, int x, int y, LevelMap m, Direction d, int id, int attackDamage, int armor, int health, int attackSpeed) {
 		super(name, x, y, m, d, id);
-		this.initiateAnimation();
+		this.attackDamage = attackDamage;
+		this.armor = armor;
+		this.health = health;
+		this.attackSpeed = attackSpeed;
 	} 
 	
 	@Override
@@ -48,6 +51,14 @@ public class Opponent extends DirectionedEntity {
 		return this.attackDamage;
 	}
 	
+	public int getHealth() {
+		return this.health;
+	}
+	
+	public int getDefence() {
+		return this.armor;
+	}
+	
 	public boolean getAttacked(int damage){
 		int realDamage = damage - this.armor;
 		if (realDamage > 0)
@@ -58,7 +69,14 @@ public class Opponent extends DirectionedEntity {
 	}
 	
 	public boolean getEncountered(Player p) {
-		// TODO Auto-generated method stub
+		Scene scene = SceneManager.getInstance().getCurrentScene();
+		assert scene.getClass() == GameScene.class;
+		GameScene gS = (GameScene)scene;
+		gS.setCurrentCombat(new Combat(p, this, new Event() {
+			public void invoke() {
+				p.increaseExperience(10);
+			}
+		}));
 		return false;
 	}
 	
