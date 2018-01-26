@@ -32,6 +32,13 @@ public class TitleScene extends Scene {
         this.introDone = false;
         this.ticks = 0; 
     }
+    
+    public TitleScene(boolean introDone) {
+    	this.options = new ArrayList<MinuetoImage>();
+        this.introDone = false;
+        this.ticks = 0; 
+        this.introDone = introDone;
+    }
 
     MinuetoImage getLogo() {
         return this.logo;
@@ -81,15 +88,13 @@ public class TitleScene extends Scene {
     }
 
     public void draw(MinuetoWindow w) {
+        w.clear(MinuetoColor.BLACK);
         if (!introDone) {
-            MinuetoColor white = new MinuetoColor(0, 0, 0);
-            w.clear(white);
             w.draw(this.logo, 0, 170);
             MinuetoColor transparency = new MinuetoColor(0, 0, 0, this.alpha);
             MinuetoRectangle transparentMask = new MinuetoRectangle(672, 480, transparency, true);
             w.draw(transparentMask, 0, 0);
         } else {
-        	w.clear(MinuetoColor.BLACK);
             w.draw(this.bg, 0, 75);
             MinuetoImage toDraw = getOptionsAt(0);
             w.draw(toDraw, 250, 260);

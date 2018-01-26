@@ -123,6 +123,7 @@ public class Player extends DirectionedEntity {
             this.health = health - realDamage;
         }
         if (health <= 0) {
+        	this.health = 0;
             return false;
         }
         return true;

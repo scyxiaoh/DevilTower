@@ -3,8 +3,9 @@ package scene;
 // Start of user code for imports
 import java.util.*;
 import org.minueto.window.MinuetoWindow;
-
-
+import org.minueto.MinuetoColor;
+import org.minueto.image.MinuetoFont;
+import org.minueto.image.MinuetoRectangle;
 import org.minueto.image.MinuetoText;
 // End of user code
 
@@ -14,9 +15,17 @@ import org.minueto.image.MinuetoText;
  */
 public class ResultScene extends GameScene {
     
-    protected long tick;
-    protected int rank;
+    protected int alpha;
+    protected int ticks;
+    protected boolean win;
     protected ArrayList<MinuetoText> resultDisplay;
+    
+    public ResultScene(boolean win) {
+    	this.resultDisplay = new ArrayList<MinuetoText>();
+    	this.win = win;
+    	this.ticks = 0;
+    	this.alpha = 255;
+    }
     
     boolean removeResultDisplay(MinuetoText a) {
         int size = resultDisplay.size();
@@ -69,18 +78,49 @@ public class ResultScene extends GameScene {
     }
 
     public void update() {
-        /* TODO: No message view defined */
+        this.ticks = ticks + 1;
+        if (ticks < 120) {
+            this.alpha = (int)(255 - 255 * (1.0 * ticks / 120));
+            if (alpha < 0) {
+                this.alpha = 0;
+            }
+        }
+        if (ticks > 120 + 120) {
+            this.alpha = (int) (255 * (1.0 * ticks - 120 - 120) / 120);
+            if (alpha > 255) {
+                this.alpha = 255;
+            }
+        }
+        if (ticks > 120 + 120 + 120) {
+            TitleScene newScene = new TitleScene(true);
+            SceneManager sM = SceneManager.getInstance();
+            sM.setScene(newScene);
+        }
     }
 
     public void init() {
-        /* TODO: No message view defined */
+    	if (win) {
+    		this.resultDisplay.add(new MinuetoText("You complete Devil Tower", new MinuetoFont("Arial",55,false, false), MinuetoColor.WHITE, true));
+    	}
+    	else {
+    		this.resultDisplay.add(new MinuetoText("Game Over", new MinuetoFont("Arial",120,false, false), MinuetoColor.WHITE, true));
+    	}
     }
 
     public void draw(MinuetoWindow w) {
-        /* TODO: No message view defined */
+    	w.clear(MinuetoColor.BLACK);
+        if (win) {
+            w.draw(this.getResultDisplayAt(0), 15, 170);
+        }
+        else {
+        	w.draw(this.getResultDisplayAt(0), 20, 170);
+        }
+    	MinuetoColor transparency = new MinuetoColor(0, 0, 0, this.alpha);
+    	MinuetoRectangle transparentMask = new MinuetoRectangle(672, 480, transparency, true);
+    	w.draw(transparentMask, 0, 0);
     }
 
     public void handleInput() {
-        /* TODO: No message view defined */
+        return;
     }
 }

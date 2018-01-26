@@ -10,6 +10,7 @@ import org.minueto.window.MinuetoWindow;
 
 import scene.Event;
 import scene.GameScene;
+import scene.ResultScene;
 import scene.Scene;
 import scene.SceneManager;
 
@@ -34,18 +35,34 @@ public class Combat {
 		//wait for 1 second when combat begins
 		boolean pSurvive = true, oSurvive = true;
 		if (timer > 59) {
-			if (timer % oSpeed == 0) {
-				pSurvive = this.player.getAttacked(this.opponent.getAttackDamage());
-			}
-			if (timer % pSpeed == 0) {
-				oSurvive = this.opponent.getAttacked(this.player.getDamage());
-			}
-			if (pSurvive) {
-				if (!oSurvive) {
+			if (this.player.getHealth() > 0) {
+				//player dead
+				if (this.opponent.getHealth() <= 0) {
+					//wait for 1 second to end
+		            try {
+		                Thread.sleep(1000);
+		            } catch (InterruptedException e) {
+		                
+		            }
 					this.opponentKilled();
+					return;
 				}
 			} else {
+				//enemy dead and player survived
+	            try {
+	                Thread.sleep(1000);
+	            } catch (InterruptedException e) {
+	                
+	            }
 				this.playerKilled();
+				return;
+			}
+			
+			if (timer % oSpeed == 0) {
+				this.player.getAttacked(this.opponent.getAttackDamage());
+			}
+			if (timer % pSpeed == 0) {
+				this.opponent.getAttacked(this.player.getDamage());
 			}
 		}
 		this.timer++;
@@ -90,8 +107,9 @@ public class Combat {
 	}
 	
 	void playerKilled() {
-		//TODO
-		//gameover process
+        ResultScene newScene = new ResultScene(false);
+        SceneManager sM = SceneManager.getInstance();
+        sM.setScene(newScene);
 	}
 
 }

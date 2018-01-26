@@ -30,18 +30,20 @@ public class Opponent extends DirectionedEntity {
 	
 	@Override
 	protected void initiateAnimation() {
-		// id: 0 - HuiTaiLang
-		
-		 MinuetoImage[][] sprites = new MinuetoImage[4][4];
-		 for (int i = 0; i < 4; i++) {
-			 for (int j = 0; j < 4; j++) {
-		     	sprites[i][j] = Assets.getOpponentTexturesAt(i*4 + j +16*id);
-		     }
-		 }
-
-		 DirectedAnimation Animation = new DirectedAnimation(Direction.South, sprites[3], sprites[0], sprites[1], sprites[2]);
-		 this.setAnimation(Animation);
-		 this.playAnimation();
+		MinuetoImage[][] sprites = new MinuetoImage[4][4];
+		switch(id) {
+		case 0:
+			// id: 0 - Slime
+			 for (int i = 0; i < 4; i++) {
+				 for (int j = 0; j < 4; j++) {
+			     	sprites[i][j] = Assets.getOpponentTexturesAt(i*4 + j +16*id);
+			     }
+			 }
+			 break;
+		}
+		DirectedAnimation Animation = new DirectedAnimation(Direction.South, sprites[3], sprites[0], sprites[1], sprites[2]);
+		this.setAnimation(Animation);
+		this.playAnimation();
 	}
 	
 	public int getAttackSpeed(){
@@ -62,10 +64,11 @@ public class Opponent extends DirectionedEntity {
 	
 	public boolean getAttacked(int damage){
 		int realDamage = damage - this.armor;
-		if (realDamage > 0)
-			this.health -= realDamage;
-		if (health <= 0)
+		if (realDamage > 0) this.health -= realDamage;
+		if (health <= 0) {
+			this.health = 0;
 			return false;
+		}
 		return true;
 	}
 	

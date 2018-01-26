@@ -16,7 +16,12 @@ public class Character extends UndirectedEntity{
 		switch(id) {
 		case 0:
 			//elf
-			a = new UndirectedAnimation(Assets.getEntityTextures().subList(18, 22).toArray(new MinuetoImage[4]));
+			a = new UndirectedAnimation(Assets.getEntityTextures().subList(18, 22).toArray(new MinuetoImage[4]), 8);
+			break;
+		case 1:
+			//princess
+			a = new UndirectedAnimation(Assets.getEntityTextures().subList(23, 27).toArray(new MinuetoImage[4]), 16);
+			break;
 		}
 		this.setAnimation(a);
 		this.playAnimation();
@@ -45,6 +50,26 @@ public class Character extends UndirectedEntity{
 			gS.addEventQueue(new Event() {
 				public void invoke() {
 					gS.getCurrentMap().getTile(10, 10).setMyEntity(null);
+				}
+			});
+			return false;
+		case 1:
+			//princess
+			gS.addDialogueQueue(new Dialogue(p, "Warrior:  My princess! I'm here to rescue you!", 40));
+			gS.addDialogueQueue(new Dialogue(this, "Princess:  You are finally here, my warrior! Take me out of this dreadful place!", 40));
+			gS.addDialogueQueue(new Dialogue(p, "Warrior:  Yes, my princess. You are safe now.", 40));
+			
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+					gS.getCurrentMap().getTile(19, 8).setMyEntity(null);
+				}
+			});
+			
+			gS.addEventQueue(new Event() {
+				public void invoke() {
+		            ResultScene newScene = new ResultScene(true);
+		            SceneManager sM = SceneManager.getInstance();
+		            sM.setScene(newScene);
 				}
 			});
 			return false;

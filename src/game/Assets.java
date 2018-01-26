@@ -82,7 +82,10 @@ public class Assets {
 			}
 		}	// [0,3]- font; [4,7]- left; [8,11]- right; [12,15]- back
 		
-		
+		tempImage = loadImageAt("NPC01-GongZhu.png");
+		for (int i = 0; i < 4 ;i++){
+			addEntityTextures(tempImage.crop(i*32, 0, 32, 32));//princess textures
+		}	// [23,26] - princess
         
     }
 

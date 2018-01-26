@@ -368,7 +368,8 @@ public class GameScene extends Scene {
         levels.get(1).getTile(17,2).setMyEntity(new KeyElement("BlueDoor", 17*32, 2*32, levels.get(1), 5));
         levels.get(1).getTile(4,2).setMyEntity(new KeyElement("RedDoor", 4*32, 2*32, levels.get(1), 6));
         levels.get(1).getTile(19,11).setMyEntity(new KeyElement("RedDoor", 19*32, 11*32, levels.get(1), 6));
-        levels.get(1).getTile(9, 3).setMyEntity(new Opponent("Slime", 9*32, 3*32, levels.get(1), Direction.South, 0, 15, 0, 200, 1));
+        levels.get(1).getTile(9, 3).setMyEntity(new Opponent("Slime", 9*32, 3*32, levels.get(1), Direction.South, 0, 15, 0, 200, 4));
+        levels.get(1).getTile(19, 8).setMyEntity(new Character("Princess", 19*32, 8*32, levels.get(1), 1));
     }
     
     void displayUI(MinuetoWindow w){

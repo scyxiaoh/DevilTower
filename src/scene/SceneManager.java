@@ -22,7 +22,6 @@ public class SceneManager {
     	scenes = new ArrayList<Scene>();
         TitleScene titleScene = new TitleScene();
         titleScene.init();
-        PauseScene pauseScene = new PauseScene();
         setCurrentScene(titleScene);
         addScenes(titleScene);
     }

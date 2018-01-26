@@ -44,7 +44,7 @@ public class KeyElement extends UndirectedEntity{
 			 tempArray = new MinuetoImage[]{Assets.getEntityTexturesAt(16)};
 			 break;
 		 }
-		 this.setAnimation(new UndirectedAnimation(tempArray));
+		 this.setAnimation(new UndirectedAnimation(tempArray, 4));
 	}
 	
 	public boolean getEncountered(Player p) {

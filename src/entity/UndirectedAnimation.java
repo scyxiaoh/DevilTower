@@ -13,8 +13,8 @@ public class UndirectedAnimation extends Animation {
     
     protected ArrayList<MinuetoImage> frames;
     
-    public UndirectedAnimation(MinuetoImage[] f) {
-        this.speed = 4;
+    public UndirectedAnimation(MinuetoImage[] f, int speed) {
+        this.speed = speed;
         this.index = 0;
         this.frames = new ArrayList<MinuetoImage>();
         this.playing = false;
